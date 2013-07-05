@@ -1,0 +1,233 @@
+/*
+
+        Structure
+
+
+*/
+
+
+// Margins
+
+.m0  { margin:        0; }
+.mt0 { margin-top:    0; }
+.mr0 { margin-right:  0; }
+.mb0 { margin-bottom: 0; }
+.ml0 { margin-left:   0; }
+
+.m1  { margin:        1rem; }
+.mt1 { margin-top:    1rem; }
+.mr1 { margin-right:  1rem; }
+.mb1 { margin-bottom: 1rem; }
+.ml1 { margin-left:   1rem; }
+
+@include break(medium) {
+  .m1-res  { margin:        2rem; }
+  .mt1-res { margin-top:    2rem; }
+  .mr1-res { margin-right:  2rem; }
+  .mb1-res { margin-bottom: 2rem; }
+  .ml1-res { margin-left:   2rem; } 
+}
+
+.m2  { margin:        2rem; }
+.mt2 { margin-top:    2rem; }
+.mr2 { margin-right:  2rem; }
+.mb2 { margin-bottom: 2rem; }
+.ml2 { margin-left:   2rem; }
+
+@include break(medium) {
+  .m2-res  { margin:        4rem; }
+  .mt2-res { margin-top:    4rem; }
+  .mr2-res { margin-right:  4rem; }
+  .mb2-res { margin-bottom: 4rem; }
+  .ml2-res { margin-left:   4rem; }
+}
+
+/* Padding
+*/
+.p0  { padding:        0; }
+.pt0 { padding-top:    0; }
+.pr0 { padding-right:  0; }
+.pb0 { padding-bottom: 0; }
+.pl0 { padding-left:   0; }
+
+.p1  { padding:        1rem; }
+.pt1 { padding-top:    1rem; }
+.pr1 { padding-right:  1rem; }
+.pb1 { padding-bottom: 1rem; }
+.pl1 { padding-left:   1rem; }
+
+@include break(medium) {
+  .p1-res  { padding:        2rem; }
+  .pt1-res { padding-top:    2rem; }
+  .pr1-res { padding-right:  2rem; }
+  .pb1-res { padding-bottom: 2rem; }
+  .pl1-res { padding-left:   2rem; }
+}
+
+.p2  { padding:        2rem; }
+.pt2 { padding-top:    2rem; }
+.pr2 { padding-right:  2rem; }
+.pb2 { padding-bottom: 2rem; }
+.pl2 { padding-left:   2rem; }
+
+.pl4 { padding-left: 4rem; }
+
+@include break(medium) {
+  .p2-res  { padding:        4rem; }
+  .pt2-res { padding-top:    4rem; }
+  .pr2-res { padding-right:  4rem; }
+  .pb2-res { padding-bottom: 4rem; }
+  .pl2-res { padding-left:   4rem; }
+}
+
+// Generic tappable padding (for links, etc.)
+.tappad {
+  line-height: 3rem;
+}
+
+
+// Mobile style full-width list item
+.tappad-s {
+  display: block;
+  padding: 0 1rem;
+  line-height: 3rem;
+}
+
+.borbox { box-sizing: border-box; }
+
+
+.db  { display: block; }
+.dib { display: inline-block; }
+.dn  { display: none; }
+
+.fl { float: left; }
+.fr { float: right; }
+
+.wrap { margin-right: auto; margin-left: auto; }
+
+.posrel { position: relative; }
+.posabs { position: absolute; }
+
+.top0    { top:    0; }
+.right0  { right:  0; }
+.bottom0 { bottom: 0; }
+.left0   { left:   0; }
+
+.top1    { top:    1rem; }
+.right1  { right:  1rem; }
+.bottom1 { bottom: 1rem; }
+.left1   { left:   1rem; }
+
+.top2    { top:    2rem; }
+.right2  { right:  2rem; }
+.bottom2 { bottom: 2rem; }
+.left2   { left:   2rem; }
+
+.fill {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.z1 { z-index: 100; }
+.z2 { z-index: 200; }
+.z3 { z-index: 300; }
+.z4 { z-index: 400; }
+.z5 { z-index: 500; }
+
+.overhide { overflow: hidden; }
+
+.scroll-y {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+// Useful for icons, tiles, circles, etc.
+.sq1 { width:  1rem; height:  1rem; } //  16px
+.sq2 { width:  2rem; height:  2rem; } //  32px
+.sq3 { width:  3rem; height:  3rem; } //  48px
+.sq4 { width:  4rem; height:  4rem; } //  64px
+.sq5 { width:  6rem; height:  6rem; } //  96px
+.sq6 { width:  8rem; height:  8rem; } // 128px
+.sq7 { width: 16rem; height: 16rem; } // 256px
+
+.minhi1 { min-height:  1rem; }
+.minhi2 { min-height:  2rem; }
+.minhi3 { min-height:  3rem; }
+.minhi4 { min-height:  4rem; }
+.minhi5 { min-height:  6rem; }
+.minhi6 { min-height:  8rem; }
+.minhi7 { min-height: 16rem; }
+
+.maxhi1 { max-height:  1rem; }
+.maxhi2 { max-height:  2rem; }
+.maxhi3 { max-height:  3rem; }
+.maxhi4 { max-height:  4rem; }
+.maxhi5 { max-height:  6rem; }
+.maxhi6 { max-height:  8rem; }
+.maxhi7 { max-height: 16rem; }
+
+.lh1 { line-height:  1; }
+.lh2 { line-height:  2rem; }
+.lh3 { line-height:  3rem; }
+.lh4 { line-height:  4rem; }
+.lh5 { line-height:  6rem; }
+.lh6 { line-height:  8rem; }
+.lh7 { line-height: 16rem; }
+
+// Max-widths to use for controlling typographic measure
+.maxwi1 { max-width: 24rem; } // 384px
+.maxwi2 { max-width: 32rem; } // 512px
+.maxwi3 { max-width: 40rem; } // 640px
+.maxwi4 { max-width: 48rem; } // 768px
+.maxwi5 { max-width: 60rem; } // 960px
+
+
+// Aspect ratio classes are useful for things like fluid-width background images
+// These fill the width of parent elements
+.asp-sq {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;  
+}
+
+.asp-4o3 {
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
+}
+
+.asp-16o9 {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+}
+
+
+// Widths
+
+// Halves
+.wi100  { width: 100%;   }
+.wi87p5 { width:  87.5%; }
+.wi75   { width:  75%;   }
+.wi62p5 { width:  62.5%; }
+.wi50   { width:  50%;   }
+.wi37p5 { width:  37.5%; }
+.wi25   { width:  25%;   }
+
+// Thirds
+.wi66   { width:  66.66667%; }
+.wi33   { width:  33.33333%; }
+
+@include break(medium) {
+  .wi100-m  { width: 100%;   }
+  .wi87p5-m { width:  87.5%; }
+  .wi75-m   { width:  75%;   }
+  .wi62p5-m { width:  62.5%; }
+  .wi50-m   { width:  50%;   }
+  .wi37p5-m { width:  37.5%; }
+  .wi25-m   { width:  25%;   }
+}
+

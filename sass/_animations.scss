@@ -1,0 +1,68 @@
+
+// Animations
+
+
+.trans-all-medium {
+  -webkit-transition: all linear .2s;
+}
+
+@-webkit-keyframes anim-pop {
+  from { -webkit-transform: scale(.9); opacity: .8; }
+  to   { -webkit-transform: scale(1);  opacity: 1;  }
+}
+.anim-pop {
+  -webkit-animation: anim-pop linear .1s;
+}
+
+@-webkit-keyframes anim-fade {
+  from { opacity: .8; }
+  to   { opacity: 1; }
+}
+
+.anim-fade {
+  -webkit-animation: anim-fade linear .1s;
+}
+
+
+// NG-Animate Classes
+
+.pop-move {
+  -webkit-transition:all linear .1s;
+  -moz-transition:all linear .1s;
+  -o-transition:all linear .1s;
+  transition:all linear .1s;
+  opacity:0.8;
+  -webkit-transform: scale(.9);
+}
+.pop-move.pop-move-active {
+  opacity:1;
+  -webkit-transform: scale(1);
+}
+
+
+.fade-hide, .fade-show {
+  -webkit-transition:all linear .1s;
+  -moz-transition:all linear .1s;
+  -o-transition:all linear .1s;
+  transition:all linear .1s;
+}
+
+.fade-hide {
+  -webkit-transform: scale(1);
+  opacity:1;
+}
+.fade-hide.fade-hide-active {
+  -webkit-transform: scale(1.2);
+  opacity:0;
+}
+
+.fade-show {
+  -webkit-transform: scale(.8);
+  opacity:0;
+}
+.fade-show.fade-show-active {
+  -webkit-transform: scale(1);
+  opacity:1;
+}
+
+

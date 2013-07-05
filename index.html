@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" ng-app="cooler">
+<head>
+  <meta charset="utf-8">
+  <title>Spectral</title>
+  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="//use.typekit.net/nvo4ukh.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body ng-controller="ListCtrl" class="bg-dkgry">
+  <div class="bg-wht">
+    <header class="pt1 pr2 pb1 pl2 mdgry">
+      <h1 class="h2 reg">Spectral</h1>
+      <p>A Simple CSS Color Palette Creator</p>
+    </header>
+
+    <div ng-view></div>
+  </div>
+
+  <footer class="p2 bg-dkgry wht">
+    <p class="mdgry small">Classes are intended for use with multi-class CSS patterns.</p>
+    <p class="mdgry small">Made with love by <a href="http://jxnblk.com">Jxnblk</a></p>
+  </footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+ 
+<!-- <script src="lib/angular/angular.js"></script> -->
+  <!-- <script src="js/lib/tinycolor.js"></script> -->
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+</body>
+</html>

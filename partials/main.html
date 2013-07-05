@@ -1,0 +1,69 @@
+
+<a href="" ng-hide="listIsEditable" ng-click="toggleListIsEditable()" class="posabs top0 right1 tappad">Edit</a>
+<a href="" ng-show="listIsEditable" ng-click="toggleListIsEditable()" class="posabs top0 right1 tappad">Done</a>
+
+<div class="overhide">
+  <div
+    ng-repeat="color in colors"
+    style="background-color: #{{color.hexValue}}; color: #{{textColor}}"
+    class="pt1 pr2 pb1 pl2 posrel trans-all-medium"
+    id="{{color.classname}}"
+  >
+
+    <div class="posabs top0 right0 mt1 mr1 btn btn-med btn-dark anim-pop" ng-show="listIsEditable">
+      <a href="" ng-show="$index>0" ng-click="moveColorUp($index)" class="mr1 wht">▲</a>
+      <a href="" ng-hide="$index==colors.length-1" ng-click="moveColorDown($index)" class="mr1 wht">▼</a>
+      <a href="" ng-click="removeColor($index)" class="p wht">✖</a>
+    </div>
+
+    <form ng-submit="storeParams()" class="">
+      <input type="text"
+        ng-model="color.classname"
+        class="input wht p borbox wi100 maxwi1"
+        ng-class="{'bg-dark': !listIsEditable, 'bg-none': listIsEditable}"
+        placeholder="Class Name"
+      />
+      
+    </form>
+    <form ng-submit="storeParams()" class="">
+      <input type="text"
+        ng-model="color.hexValue"
+        ng-pattern="/^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/"
+        class="input bg-dark wht h2 mb0 borbox wi100 maxwi1"
+        ng-class="{'bg-dark': !listIsEditable, 'bg-none': listIsEditable}"
+        placeholder="Hex Value"
+      />
+      <!-- <small>{{tileWidth}}%</small> -->
+    </form>
+
+  </div>
+  <div class="txtcen">
+    <a href="" ng-click="addColor()" class="db p2 h2 dark">✚</a>
+  </div>
+</div>
+
+<div class="p2 bg-dkgry wht" ng-show="colors[0].classname && colors[0].hexValue">
+
+<h2 class="reg">CSS</h2>
+<pre class="mono no-highlight anim-fade">
+<code ng-repeat="color in colors" class="highlight">.{{color.classname}} { color: #{{color.hexValue}}; }
+.bg-{{color.classname}} { background-color: #{{color.hexValue}}; }
+</code>
+</pre>
+
+<h2 class="reg">SASS</h2>
+<pre class="mono no-highlight anim-fade">
+<code ng-repeat="color in colors" class="highlight">${{color.classname}}: #{{color.hexValue}};
+</code>
+</pre>
+
+<!--   <a href=""
+    ng-controller="ShareCtrl"
+    ng-click="tweet()"
+    class="btn btn-med btn-link">
+    Tweet  
+  </a> -->
+
+
+</div>
+
