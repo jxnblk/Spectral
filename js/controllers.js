@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('cooler.controllers', [])
+angular.module('spectral.controllers', [])
 
   .controller('ListCtrl', ['$scope', function($scope){
     $scope.listIsEditable = false;
@@ -74,8 +74,8 @@ angular.module('cooler.controllers', [])
 
   .controller('ShareCtrl', ['$scope', '$location', '$window', function($scope, $location, $window) {
     $scope.tweet = function(){
-      //var link = $location.absUrl();
-      var url = 'https://twitter.com/intent/tweet?text=Check out my cooler colors: &url=' + $location.absUrl();
+      //var url = 'https://twitter.com/intent/tweet?text=Check out my cooler colors: &url=' + $location.absUrl();
+      var url = 'https://twitter.com/intent/tweet?text=Spectral:%20A%20Simple%20CSS%20Color%20Palette%20Creator%20by%20@jxnblk.&url=http://jxnblk.com/spectral';
       $window.open(url);
     };
   }])
