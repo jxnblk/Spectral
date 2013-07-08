@@ -21,8 +21,9 @@
     <div ng-view></div>
   </div>
 
-  <footer class="p2 bg-dkgry wht">
-      <a href="" ng-controller="ShareCtrl" ng-click="tweet()" class="btn btn-med btn-link mb1">Tweet</a>
+  <footer class="p2 bg-dkgry wht" ng-controller="ShareCtrl">
+    <a href="" ng-click="tweet()" class="btn btn-med btn-link mb1 mr1">Tweet</a>
+    <input type="text" ng-model="shareUrl" onclick="this.focus();this.select()" class="input" readonly />
     <p class="mdgry small">Classes are intended for use with multi-class CSS patterns.</p>
     <p class="mdgry small">Fork me on <a href="https://github.com/jxnblk/Spectral">Github</a>. Made with love by <a href="http://jxnblk.com">Jxnblk</a></p>
   </footer>

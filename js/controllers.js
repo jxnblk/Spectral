@@ -73,6 +73,7 @@ angular.module('spectral.controllers', [])
   }])
 
   .controller('ShareCtrl', ['$scope', '$location', '$window', function($scope, $location, $window) {
+    $scope.shareUrl = $location.absUrl();
     $scope.tweet = function(){
       //var url = 'https://twitter.com/intent/tweet?text=Check out my cooler colors: &url=' + $location.absUrl();
       var url = 'https://twitter.com/intent/tweet?text=Spectral:%20A%20Simple%20CSS%20Color%20Palette%20Creator%20by%20@jxnblk.&url=http://jxnblk.com/spectral';
