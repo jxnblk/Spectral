@@ -231,3 +231,12 @@
   .wi25-m   { width:  25%;   }
 }
 
+@include break(small) {
+  .hide-small { display: none; }
+}
+@include break(medium) {
+  .hide-medium { display: none; }
+}
+
+
+

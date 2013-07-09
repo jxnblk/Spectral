@@ -4,16 +4,10 @@
 
 angular.module('spectral.controllers', [])
 
-  .controller('ListCtrl', ['$scope', function($scope){
-    $scope.listIsEditable = false;
-    $scope.toggleListIsEditable = function(){
-      $scope.listIsEditable = !$scope.listIsEditable;
-    };
-  }])
-
   .controller('MainCtrl', ['$scope', '$routeParams', '$location', function($scope, $routeParams, $location) {
 
     $scope.colors = [];
+    $scope.shareUrl = $location.absUrl();
 
     if($routeParams.params){
       var paramColors = $routeParams.params.split('&');
@@ -30,6 +24,11 @@ angular.module('spectral.controllers', [])
       $scope.colors.push(newColor);
     };
 
+    $scope.listIsEditable = false;
+    $scope.toggleListIsEditable = function(){
+      $scope.listIsEditable = !$scope.listIsEditable;
+    };
+
     $scope.storeParams = function(){
       var colors = []
       for (var i = 0; i < $scope.colors.length; i++){
@@ -40,6 +39,7 @@ angular.module('spectral.controllers', [])
       };
       var params = colors.join('&');
       $location.path(params);
+      $scope.shareUrl = $location.absUrl();
     };
 
     $scope.addColor = function() {
@@ -73,7 +73,7 @@ angular.module('spectral.controllers', [])
   }])
 
   .controller('ShareCtrl', ['$scope', '$location', '$window', function($scope, $location, $window) {
-    $scope.shareUrl = $location.absUrl();
+    //$scope.shareUrl = $location.absUrl();
     $scope.tweet = function(){
       //var url = 'https://twitter.com/intent/tweet?text=Check out my cooler colors: &url=' + $location.absUrl();
       var url = 'https://twitter.com/intent/tweet?text=Spectral:%20A%20Simple%20CSS%20Color%20Palette%20Creator%20by%20@jxnblk.&url=http://jxnblk.com/spectral';
