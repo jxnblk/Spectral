@@ -29,6 +29,11 @@ angular.module('spectral.controllers', [])
       $scope.listIsEditable = !$scope.listIsEditable;
     };
 
+    $scope.endEditable = function(){
+      $scope.listIsEditable = false;
+      $scope.storeParams();
+    };
+
     $scope.storeParams = function(){
       var colors = []
       for (var i = 0; i < $scope.colors.length; i++){
@@ -51,21 +56,21 @@ angular.module('spectral.controllers', [])
 
     $scope.removeColor = function(i) {
       $scope.colors.splice(i,1);
-      $scope.storeParams();
+      //$scope.storeParams();
     };
 
     $scope.moveColorUp = function(i) {
       var colorToMove = $scope.colors[i];
       $scope.colors.splice(i,1);
       $scope.colors.splice(i-1,0,colorToMove);
-      $scope.storeParams();
+      //$scope.storeParams();
     };
 
     $scope.moveColorDown = function(i) {
       var colorToMove = $scope.colors[i];
       $scope.colors.splice(i,1);
       $scope.colors.splice(i+1,0,colorToMove);
-      $scope.storeParams();
+      //$scope.storeParams();
     };
 
     $scope.tileWidth = 100 / $scope.colors.length;
