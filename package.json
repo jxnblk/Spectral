@@ -21,7 +21,17 @@
     "gulp": "^3.8.8",
     "gulp-browserify": "^0.5.0",
     "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^1.0.1"
+    "gulp-uglify": "^1.0.1",
+    "rework-custom-media": "^0.2.0",
+    "rework-vars": "^3.1.1",
+    "rework-calc": "^1.1.0",
+    "rework-npm": "^1.0.0",
+    "gulp-rework": "^1.0.2",
+    "basscss-table-object": "0.0.3",
+    "basscss-utilities": "0.0.13",
+    "basscss-base": "0.0.11",
+    "basscss-color-basic": "0.0.2",
+    "geomicons-open": "latest"
   },
   "dependencies": {
     "vue": "^0.10.6"

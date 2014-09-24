@@ -2,16 +2,28 @@
 <html id="app">
   <meta charset="utf-8">
   <title>Spectral 2</title>
-  <link rel="stylesheet" href="http://d2v52k3cl9vedd.cloudfront.net/basscss/4.0.0/bassdock.min.css">
+  <link rel="stylesheet" href="css/base.css">
 <head>
 </head>
-<body class="p2 white bg-dark-gray">
+<body class="white bg-dark-gray">
 
-  <header class="py2">
-    <h1 class="caps m0">Spectral 2</h1>
+  <header class="clearfix px2 py4">
+    <h1 class="caps left m0">Spectral 2</h1>
+    <div class="right">
+      <input type="text" class="input" placeholder="Base Color" v-model="baseColor">
+      <button class="button-blue" v-on="click: addColumn()">Add Column</button>
+    </div>
   </header>
 
-  <main class="py2">
+  <main class="px1 py2">
+    <div class="table">
+      <div v-repeat="tile: spectrum[0]" class="table-cell p1">
+        <div class="Tile" v-style="background-color: tile">
+          {{ tile }}
+          tile here
+        </div>
+      </div>
+    </div>
   </main>
 
   <script src="js/app.js"></script>

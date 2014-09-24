@@ -1,0 +1,35 @@
+/*
+    Spectral 2
+
+*/
+
+
+@import "basscss-base";
+@import "basscss-utilities";
+@import "basscss-table-object";
+@import "basscss-color-basic";
+
+
+:root {
+
+  --font-family: 'Avenir Next', sans-serif;
+  --heading-font-weight: 600;
+  --bold-font-weight: 600;
+
+  --dark-gray: #111;
+  --mid-gray: #777;
+
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: .125em;
+}
+
+.Tile {
+  min-height: 8rem;
+}
+
+
