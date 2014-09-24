@@ -2,6 +2,7 @@
 
 var Vue = require('vue');
 var Geomicons = require('geomicons-open');
+var tinycolor = require('tinycolor2');
 
 Vue.directive('icon', function(value) {
   this.el.dataset.icon = value;
@@ -11,14 +12,11 @@ Vue.directive('icon', function(value) {
 var app = {};
 app.data = {};
 app.data.spectrum = [
-  ['#f30']
+  ['#4488dd']
 ];
 app.data.test = 'herro';
 
 app.computed = {};
-app.computed.baseColor = function() {
-  return this.spectrum[0][0];
-};
 
 app.created = function() {
   console.log('app created');
@@ -27,9 +25,29 @@ app.created = function() {
 app.methods = {};
 
 app.methods.addColumn = function() {
-  console.log(this.spectrum);
-  this.spectrum[0].push('#555');
+
+  var self = this;
+  var row = this.spectrum[0];
+  var color = tinycolor(row[0]);
+  row.push('#f00');
+  //this.spectrum[0].push(color.toHexString());
+
+  function updateColors() {
+    var rotate = -360 / row.length;
+    console.log(rotate);
+    for (var i = 1; i < row.length; i++) {
+      var hex = color.spin(rotate).toHexString();
+      console.log(hex);
+      self.spectrum[0][i] = hex;
+    }
+  };
+
+  updateColors();
+
+  //color.spin(rotate);
+  //this.spectrum[0].push(color.toHexString());
 };
+
 
 var view = new Vue({
   el: '#app',

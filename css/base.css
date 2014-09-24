@@ -850,4 +850,5 @@ hr {
 
 .Tile {
   min-height: 8rem;
+  overflow: hidden;
 }
