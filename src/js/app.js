@@ -11,12 +11,14 @@ Vue.directive('icon', function(value) {
 
 var app = {};
 app.data = {};
-app.data.spectrum = [
-  ['#4488dd']
-];
-app.data.test = 'herro';
+app.data.spectrum = [];
+app.data.baseColor = '';
 
 app.computed = {};
+
+//app.computed.baseColor = function() {
+//  return this.baseColor;
+//};
 
 app.created = function() {
   console.log('app created');
@@ -24,28 +26,24 @@ app.created = function() {
 
 app.methods = {};
 
+app.methods.updateColors = function() {
+  var self = this;
+  var color = tinycolor(this.baseColor);
+  var rotate = -360 / (self.spectrum.length + 1);
+  for (var i = 0; i < self.spectrum.length; i++) {
+    var hex = color.spin(rotate).toHexString();
+    self.spectrum[i] = hex;
+  }
+};
+
 app.methods.addColumn = function() {
 
   var self = this;
-  var row = this.spectrum[0];
-  var color = tinycolor(row[0]);
-  row.push('#f00');
-  //this.spectrum[0].push(color.toHexString());
+  var color = tinycolor(this.baseColor);
+  this.spectrum.push(color.toHexString());
 
-  function updateColors() {
-    var rotate = -360 / row.length;
-    console.log(rotate);
-    for (var i = 1; i < row.length; i++) {
-      var hex = color.spin(rotate).toHexString();
-      console.log(hex);
-      self.spectrum[0][i] = hex;
-    }
-  };
+  this.updateColors();
 
-  updateColors();
-
-  //color.spin(rotate);
-  //this.spectrum[0].push(color.toHexString());
 };
 
 
@@ -56,3 +54,4 @@ var view = new Vue({
   computed: app.computed,
   methods: app.methods
 });
+

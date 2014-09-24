@@ -11,7 +11,7 @@
     <h1 class="caps left m0">Spectral 2</h1>
     <div class="right">
       <form class="inline-block">
-        <input type="text" class="input" placeholder="0 0 " v-model="spectrum[0][0]">
+        <input type="text" class="input" placeholder="base color" v-model="baseColor">
       </form>
       <button class="button-blue" v-on="click: addColumn()">Add Column</button>
     </div>
@@ -19,7 +19,10 @@
 
   <main class="px1 py2">
     <div class="table table-fixed">
-      <div v-repeat="spectrum[0]" class="table-cell py1">
+      <div class="table-cell py1">
+        <div class="Tile" v-style="background-color: baseColor">{{ baseColor }}</div>
+      </div>
+      <div v-repeat="spectrum" class="table-cell py1">
         <div class="Tile" v-style="background-color: $value"> 
           {{ $index }}
           <!--
