@@ -7,20 +7,28 @@
 </head>
 <body class="white bg-dark-gray">
 
-  <header class="clearfix px2 py4">
-    <h1 class="caps left m0">Spectral 2</h1>
-    <div class="right">
-      <form class="inline-block">
-        <input type="text" class="input" placeholder="base color" v-model="baseColor">
-      </form>
-      <button class="button-blue" v-on="click: addColumn()">Add Column</button>
+  <header class="px2 py2">
+    <div class="clearfix py2">
+      <h1 class="caps left m0">Spectral 2</h1>
+      <div class="right">
+        <button class="button-blue" v-on="click: removeColumn()">Remove Column</button>
+        <button class="button-blue" v-on="click: addColumn()">Add Column</button>
+      </div>
     </div>
+    <form class="">
+      <input type="text" class="input" placeholder="base color" v-model="baseColor">
+      <!--
+      <input type="range" v-model="base.h">
+      <input type="range" v-model="base.s">
+      <input type="range" v-model="base.l">
+      -->
+    </form>
   </header>
 
   <main class="px1 py2">
     <div class="table table-fixed">
       <div class="table-cell py1">
-        <div class="Tile" v-style="background-color: baseColor">{{ baseColor }}</div>
+        <div class="Tile transition-all" v-style="background-color: baseColor">{{ baseColor }}</div>
       </div>
       <div v-repeat="spectrum" class="table-cell py1">
         <div class="Tile" v-style="background-color: $value"> 

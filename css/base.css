@@ -852,3 +852,7 @@ hr {
   min-height: 8rem;
   overflow: hidden;
 }
+
+.transition-all {
+  transition: all .2s ease-out;
+}

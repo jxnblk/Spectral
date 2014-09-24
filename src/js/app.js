@@ -37,13 +37,13 @@ app.methods.updateColors = function() {
 };
 
 app.methods.addColumn = function() {
-
-  var self = this;
   var color = tinycolor(this.baseColor);
   this.spectrum.push(color.toHexString());
-
   this.updateColors();
+};
 
+app.methods.removeColumn = function() {
+  this.spectrum.splice(this.spectrum.length - 1);
 };
 
 
