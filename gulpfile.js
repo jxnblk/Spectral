@@ -5,11 +5,7 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync');
 
-var rework = require('gulp-rework');
-var rnpm = require('rework-npm');
-var rmedia = require('rework-custom-media');
-var rvars = require('rework-vars');
-var rcalc = require('rework-calc');
+var basswork = require('gulp-basswork');
 
 gulp.task('compile', function() {
   gulp.src('./src/js/app.js')
@@ -17,9 +13,9 @@ gulp.task('compile', function() {
     .pipe(gulp.dest('./js'));
 });
 
-gulp.task('rework', function() {
+gulp.task('basswork', function() {
   gulp.src('./src/css/base.css')
-    .pipe(rework(rnpm(), rmedia(), rvars(), rcalc))
+    .pipe(basswork())
     .pipe(gulp.dest('./css'));
 });
 
@@ -28,7 +24,7 @@ gulp.task('serve', function() {
 });
 
 
-gulp.task('dev', ['compile', 'rework', 'serve'], function() {
-  gulp.watch(['./index.html', './src/**/*'], ['compile', 'rework', function() { browserSync.reload(); }]);
+gulp.task('dev', ['compile', 'basswork', 'serve'], function() {
+  gulp.watch(['./index.html', './src/**/*'], ['compile', 'basswork', function() { browserSync.reload(); }]);
 });
 

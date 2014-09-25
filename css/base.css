@@ -143,14 +143,23 @@ h6,
   padding-left: 0;
 }
 
-input:not([type=radio]):not([type=checkbox]) {
+input[type=text],
+input[type=datetime],
+input[type=datetime-local],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=time],
+input[type=url],
+input[type=week] {
   line-height: 2.25em;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   height: 2.25em;
   -webkit-appearance: none;
-}
-
-input:not([type=submit]):not([type=radio]):not([type=checkbox]) {
   margin-top: 0;
   margin-bottom: .5rem;
   padding: .25rem 1rem;
@@ -159,7 +168,8 @@ input:not([type=submit]):not([type=radio]):not([type=checkbox]) {
 select {
   line-height: calc(2.25em - .25rem);
   display: block;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   width: 100%;
   height: 2.25em;
   margin-top: 0;
@@ -169,19 +179,23 @@ select {
 
 
 textarea {
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   margin-top: 0;
   margin-bottom: .5rem;
 }
 
 button,
+input[type=button],
 input[type=submit],
+input[type=reset],
 .button {
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   display: inline-block;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   line-height: 2.25em;
   margin: 0;
   padding: 0 1rem;
@@ -625,7 +639,7 @@ hr {
   border: 0;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: rgba(#036,.125);
+  border-bottom-color: rgba(0, 51, 102, .125);
 }
 
 .dark-gray {
@@ -693,45 +707,45 @@ hr {
 }
 
 .bg-darken-1 {
-  background-color: rgba(#036,.03125);
+  background-color: rgba(0, 51, 102, .03125);
 }
 
 .bg-darken-2 {
-  background-color: rgba(#036,.0625);
+  background-color: rgba(0, 51, 102, .0625);
 }
 
 .bg-darken-3 {
-  background-color: rgba(#036,.125);
+  background-color: rgba(0, 51, 102, .125);
 }
 
 .border {
   border-style: solid;
   border-width: 1px;
-  border-color: rgba(#036,.125);
+  border-color: rgba(0, 51, 102, .125);
 }
 
 .border-top {
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: rgba(#036,.125);
+  border-top-color: rgba(0, 51, 102, .125);
 }
 
 .border-right {
   border-right-style: solid;
   border-right-width: 1px;
-  border-right-color: rgba(#036,.125);
+  border-right-color: rgba(0, 51, 102, .125);
 }
 
 .border-bottom {
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: rgba(#036,.125);
+  border-bottom-color: rgba(0, 51, 102, .125);
 }
 
 .border-left {
   border-left-style: solid;
   border-left-width: 1px;
-  border-left-color: rgba(#036,.125);
+  border-left-color: rgba(0, 51, 102, .125);
 }
 
 .rounded {
@@ -746,10 +760,11 @@ hr {
 .textarea,
 .select {
   background-color: white;
-  transition: box-shadow .2s ease;
+  -webkit-transition: box-shadow .2s ease;
+          transition: box-shadow .2s ease;
   border-style: solid;
   border-width: 1px;
-  border-color: rgba(#036,.125);
+  border-color: rgba(0, 51, 102, .125);
   border-radius: 3px;
 }
 
@@ -758,12 +773,13 @@ hr {
 .select:focus {
   outline: none;
   border-color: #0076df;
-  box-shadow: 0 0 2px rgba(#0076df,.5);
+  box-shadow: 0 0 2px rgba(0, 118, 223, .5);
 }
 
 .radio,
 .checkbox {
-  transition: box-shadow: .2s ease;
+  -webkit-transition: box-shadow: .2s ease;
+          transition: box-shadow: .2s ease;
 }
 
 .radio {
@@ -773,30 +789,33 @@ hr {
 .radio:focus,
 .checkbox:focus {
   outline: none;
-  box-shadow: 0 0 2px rgba(#0076df,.5);
+  box-shadow: 0 0 2px rgba(0, 118, 223, .5);
 }
 
 .table-light th,
 .table-light td {
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: rgba(#036,.125);
+  border-bottom-color: rgba(0, 51, 102, .125);
 }
 
 .button-blue {
   color: white;
   background-color: #0076df;
   border-radius: 3px;
-  transition-duration: .2s;
-  transition-timing-function: ease;
-  transition-property: box-shadow, background-color;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-property: box-shadow, background-color;
+          transition-property: box-shadow, background-color;
 }
 
 
 
 .button-blue:focus {
   outline: none;
-  box-shadow: 0 0 0 2px white, 0 0 1px 4px rgba(#0076df, .5);
+  box-shadow: 0 0 0 2px white, 0 0 1px 4px rgba(0, 118, 223, .5);
 }
 
 .button-blue-outline {
@@ -804,9 +823,12 @@ hr {
   background-color: transparent;
   border-radius: 3px;
   box-shadow: inset 0 0 0 2px #0076df;
-  transition-duration: .2s;
-  transition-timing-function: ease;
-  transition-property: box-shadow, color, background-color;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-property: box-shadow, color, background-color;
+          transition-property: box-shadow, color, background-color;
 }
 
 .button-blue-outline:hover {
@@ -816,23 +838,26 @@ hr {
 
 .button-blue-outline:focus {
   outline: none;
-  box-shadow: inset 0 0 0 2px #0076df, 0 0 0 2px white, 0 0 1px 4px rgba(#0076df, .5);
+  box-shadow: inset 0 0 0 2px #0076df, 0 0 0 2px white, 0 0 1px 4px rgba(0, 118, 223, .5);
 }
 
 .button-gray {
   color: white;
   background-color: #777;
   border-radius: 3px;
-  transition-duration: .2s;
-  transition-timing-function: ease;
-  transition-property: box-shadow, background-color;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-property: box-shadow, background-color;
+          transition-property: box-shadow, background-color;
 }
 
 
 
 .button-gray:focus {
   outline: none;
-  box-shadow: 0 0 0 2px white, 0 0 1px 4px rgba(#0076df, .5);
+  box-shadow: 0 0 0 2px white, 0 0 1px 4px rgba(0, 118, 223, .5);
 }
 
 /* Defaults */
@@ -854,5 +879,6 @@ hr {
 }
 
 .transition-all {
-  transition: all .2s ease-out;
+  -webkit-transition: all .2s ease-out;
+          transition: all .2s ease-out;
 }

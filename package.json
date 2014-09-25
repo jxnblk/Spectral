@@ -29,11 +29,12 @@
     "gulp-rework": "^1.0.2",
     "basscss-table-object": "0.0.3",
     "basscss-utilities": "0.0.13",
-    "basscss-base": "0.0.11",
+    "basscss-base": "latest",
     "basscss-color-basic": "0.0.2",
     "geomicons-open": "latest",
     "tinycolor": "0.0.1",
-    "tinycolor2": "^1.0.0"
+    "tinycolor2": "^1.0.0",
+    "gulp-basswork": "latest"
   },
   "dependencies": {
     "vue": "^0.10.6"
