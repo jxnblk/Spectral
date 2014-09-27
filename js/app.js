@@ -5803,7 +5803,6 @@ app.data.customShiftS = null;
 app.computed.shiftS = {
   $get: function() {
     if (this.customShiftS) {
-      console.log('has customShift', this.customShiftS);
       return this.customShiftS;
     } else {
       var hsl = tinycolor(this.baseHex).toHsl();
@@ -5817,7 +5816,6 @@ app.computed.shiftS = {
     }
   },
   $set: function(val) {
-    console.log('set shiftS', val);
     this.customShiftS = val;
     return this.customShiftS;
   }
@@ -5827,7 +5825,6 @@ app.data.customShiftL = null;
 app.computed.shiftL = {
   $get: function() {
     if (this.customShiftL) {
-      console.log('has customShift', this.customShiftL);
       return this.customShiftL;
     } else {
       var hsl = tinycolor(this.baseHex).toHsl();
@@ -5841,7 +5838,6 @@ app.computed.shiftL = {
     }
   },
   $set: function(val) {
-    console.log('set shiftL', val);
     this.customShiftL = val;
     return this.customShiftL;
   }
@@ -5877,8 +5873,76 @@ app.methods.removeRow = function() {
   this.rowsArray.splice(this.rowsArray.length - 1);
 };
 
+app.computed.state = function() {
+  this.updateState();
+  //var state = { base: this.baseHex, hues: this.spectrum.length };
+  return window.location.hash;
+};
+
+app.methods.updateState = function() {
+  var str = '#' + this.baseHex.split('#')[1] + '&hues=' + this.spectrum.length + '&rows=' + this.rows.length;
+  //window.location.hash = str;
+  window.history.pushState({ foo: 'bar' }, '', str);
+};
+
 app.created = function() {
+
   console.log('app created');
+  var self = this;
+
+  function parseHash(str) {
+    var obj = {};
+    obj.base = str.split('&')[0];
+    var arr = str.split('&');
+    for (var i = 1; i < arr.length; i++) {
+      var a = arr[i].split('=');
+      obj[a[0]] = a[1];
+    }
+    return obj;
+  };
+
+  if (window.location.hash) {
+    console.log('load hash', window.location.hash);
+    var obj = parseHash(window.location.hash);
+    this.base = obj.base;
+    for (var i = 0; i < obj.hues; i++) {
+      self.addColumn();
+    }
+    for (var i = 0; i < obj.rows; i++) {
+      self.addRow();
+    }
+  };
+
+  window.onpopstate = function(e) {
+    console.log('pop', e);
+    var obj = parseHash(window.location.hash);
+    //self.base = obj.base;
+    var hues = eval(obj.hues);
+    console.log(typeof hues);
+    /*
+    if (hues != self.spectrum.length) {
+      console.log('reset spectrum');
+      self.spectrum = [];
+      console.log('length', self.spectrum.length);
+      for (var i = 1; i < hues; i++) {
+        console.log('add column' + i);
+        self.addColumn();
+      }
+    }
+    */
+    /*
+    if (obj.rows != self.rows.length) {
+      console.log('reset rows');
+      self.rows = [];
+      for (var i = 0; i < obj.rows; i++) {
+        self.addRow();
+      }
+    }
+    */
+  };
+  window.onhashchange = function(e) {
+    console.log('app hash change', window.location.hash);
+  };
 };
 
 var view = new Vue({
