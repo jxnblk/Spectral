@@ -5,19 +5,18 @@
   <link rel="stylesheet" href="css/base.css">
 <head>
 </head>
-<body class="white bg-dark-gray">
+<body class="py4 white bg-dark-gray">
 
-  <header class="px2 py2">
-    <div class="clearfix py2">
-      <h1 class="caps left m0">Spectral 2</h1>
-      <div class="right">
-        <button class="button-blue" v-on="click: removeColumn()">Remove Column</button>
-        <button class="button-blue" v-on="click: addColumn()">Add Column</button>
-      </div>
+  <header class="clearfix">
+    <h1 class="caps sm-col p2 m0">Spectral 2</h1>
+    <div class="right p2">
+      <button class="button-blue" v-on="click: removeColumn()">-</button>
+      <button class="button-blue" v-on="click: addColumn()">+</button>
     </div>
-    <form class="">
+    <form class="overflow-hidden p2">
+      <label>Base Color</label>
       <input type="text" class="input" placeholder="base color" v-model="baseColor">
-      <input type="color" class="" placeholder="base color" v-model="baseColor">
+      <input type="color" class="" placeholder="e.g. #f00" v-model="baseColor">
       <!--
       <input type="range" v-model="base.h">
       <input type="range" v-model="base.s">
@@ -26,21 +25,29 @@
     </form>
   </header>
 
-  <main class="px1 py2">
-    <div class="table table-fixed">
-      <div class="table-cell py1">
-        <div class="Tile transition-all" v-style="background-color: baseColor">{{ baseColor }}</div>
-      </div>
-      <div v-repeat="spectrum" class="table-cell py1">
-        <div class="Tile" v-style="background-color: $value"> 
-          {{ $index }}
-          <!--
-          <input type="text" class="input" v-model="$value">
-          -->
-        </div>
-      </div>
+  <main class="Tile-container clearfix center">
+    <div class="Tile transition-all"
+      v-style="
+        background-color: baseColor,
+        width: 100 / (spectrum.length + 1) + '%',
+        height: 100 / (rows.length) + '%'
+      ">
+      {{ baseColor }}
+    </div>
+    <div class="Tile transition-all"
+      v-repeat="spectrum"
+      v-style="
+        background-color: $value,
+        width: 100 / (spectrum.length + 1) + '%',
+        height: 100 / (rows.length) + '%'
+      "> 
+        {{ $index + 1 }}
+        {{ $value }}
     </div>
   </main>
+
+  <section id="options" class="p2">
+  </section>
 
   <script src="js/app.js"></script>
 </body>

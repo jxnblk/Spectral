@@ -4,46 +4,51 @@ var Vue = require('vue');
 var Geomicons = require('geomicons-open');
 var tinycolor = require('tinycolor2');
 
+
 Vue.directive('icon', function(value) {
   this.el.dataset.icon = value;
   Geomicons.inject(this.el);
 });
 
+
 var app = {};
 app.data = {};
-app.data.spectrum = [];
-app.data.baseColor = '';
+app.data.baseColor = '#f00';
+app.data.spectrumArray = [];
+app.data.rows = [
+  { s: -20, l: -20 }
+];
+
 
 app.computed = {};
 
-//app.computed.baseColor = function() {
-//  return this.baseColor;
-//};
-
-app.created = function() {
-  console.log('app created');
+app.computed.spectrum = function() {
+  var self = this;
+  var color = tinycolor(this.baseColor);
+  var rotate = -360 / (self.spectrumArray.length + 1);
+  for (var i = 0; i < self.spectrumArray.length; i++) {
+    var hex = color.spin(rotate).toHexString();
+    self.spectrumArray[i] = hex;
+  }
+  return this.spectrumArray;
 };
+
 
 app.methods = {};
 
-app.methods.updateColors = function() {
-  var self = this;
-  var color = tinycolor(this.baseColor);
-  var rotate = -360 / (self.spectrum.length + 1);
-  for (var i = 0; i < self.spectrum.length; i++) {
-    var hex = color.spin(rotate).toHexString();
-    self.spectrum[i] = hex;
-  }
-};
-
 app.methods.addColumn = function() {
+  if (this.spectrumArray.length > 30) return false;
   var color = tinycolor(this.baseColor);
-  this.spectrum.push(color.toHexString());
-  this.updateColors();
+  this.spectrumArray.push(color.toHexString());
 };
 
 app.methods.removeColumn = function() {
-  this.spectrum.splice(this.spectrum.length - 1);
+  this.spectrumArray.splice(this.spectrumArray.length - 1);
+};
+
+
+app.created = function() {
+  console.log('app created');
 };
 
 

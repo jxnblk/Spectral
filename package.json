@@ -34,7 +34,8 @@
     "geomicons-open": "latest",
     "tinycolor": "0.0.1",
     "tinycolor2": "^1.0.0",
-    "gulp-basswork": "latest"
+    "gulp-basswork": "latest",
+    "basscss-grid": "0.0.9"
   },
   "dependencies": {
     "vue": "^0.10.6"

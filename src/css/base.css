@@ -7,6 +7,7 @@
 @import "basscss-base";
 @import "basscss-utilities";
 @import "basscss-table-object";
+@import "basscss-grid";
 @import "basscss-color-basic";
 
 
@@ -21,6 +22,10 @@
 
 }
 
+html, body { height: 100% }
+header { min-height: 12.5% }
+main   { height: 75% }
+
 .icon {
   width: 1em;
   height: 1em;
@@ -28,12 +33,25 @@
   top: .125em;
 }
 
+.Tile-container {
+  overflow: hidden;
+  font-size: 0;
+  white-space: nowrap;
+}
+
 .Tile {
+  display: inline-block;
+  font-size: 1rem;
   min-height: 8rem;
   overflow: hidden;
 }
 
+.Tile.v-enter {
+}
+.Tile.v-leave {
+}
+
 .transition-all {
-  transition: all .2s ease-out;
+  transition: all .3s ease-out;
 }
 
