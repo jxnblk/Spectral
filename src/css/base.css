@@ -8,6 +8,7 @@
 @import "basscss-utilities";
 @import "basscss-table-object";
 @import "basscss-grid";
+@import "basscss-positions";
 @import "basscss-color-basic";
 
 
@@ -18,16 +19,18 @@
   --bold-font-weight: 600;
 
   --dark-gray: #111;
-  --mid-gray: #777;
+  --mid-gray: #333;
+  --darken-2: rgba(#000, .25);
+  --darken-3: rgba(#000, .5);
 
 }
 
 html, body { height: 100% }
+main   { height: 80% }
+
+/*
 header { min-height: 12.5% }
-main   { height: 75% }
-
-  main   { height: 25% }
-
+*/
 .lh3 { line-height: 3rem; }
 
 .icon {
@@ -52,13 +55,10 @@ main   { height: 75% }
   height: 100%;
   min-height: 8rem;
   overflow: hidden;
-  /*
-  background-color: #999;
   transition:
     width .2s ease,
     height .2s ease,
     background-color .5s ease;
-  */
   position: relative;
 }
 .Tile > div {
@@ -77,5 +77,28 @@ main   { height: 75% }
 
 .transition-all {
   transition: all .3s ease-out;
+}
+
+.button-dark {
+  color: white;
+  background-color: var(--darken-3);
+  border-radius: var(--border-radius);
+}
+.button-dark:hover {
+}
+.button-dark:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px var(--darken-2, red);
+}
+
+.input-dark {
+  color: white;
+  background-color: rgba(#fff, .125);
+  border: 0;
+  border-radius: var(--border-radius);
+}
+.input-dark:focus {
+  outline: 0;
+  box-shadow: inset 0 0 0 2px var(--blue);
 }
 

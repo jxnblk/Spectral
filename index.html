@@ -7,19 +7,12 @@
 </head>
 <body class="white bg-dark-gray">
 
-  <header class="clearfix lh3">
-    <h1 class="h3 caps lh3 sm-col p2 m0">Spectral 2</h1>
-    <div class="lh3 right p2">
-      <span>{{ Math.floor(tileWidth) }}</span>
-      <span>{{ spectrum.length }}</span>
-      <button class="button-blue" v-on="click: removeColumn()">-</button>
-      <button class="button-blue" v-on="click: addColumn()">+</button>
+  <header class="absolute top-0 left-0 right-0 z1 clearfix lh3">
+    <div class="right lh3 px2">
+      <button class="button-dark" v-on="click: removeColumn()">-</button>
+      <button class="button-dark" v-on="click: addColumn()">+</button>
     </div>
-    <form class="lh3 overflow-hidden p2">
-      <label>Base Color</label>
-      <input type="text" class="input" placeholder="base color" v-model="base">
-      <input type="color" class="" placeholder="e.g. #f00" v-model="base">
-    </form>
+    <h1 class="h3 caps lh3 overflow-hidden px2 m0">Spectral 2</h1>
   </header>
 
   <main class="Tile-container clearfix center">
@@ -32,7 +25,6 @@
           width: tileWidth + '%'">
           <div class="h6 caps bold">
             {{ base }}
-            width: {{ Math.round( tileWidth ) }}
           </div>
       </div>
       <div class="Tile"
@@ -42,7 +34,6 @@
           width: tileWidth + '%'"> 
           <div class="h6 caps bold">
             {{ color }}
-            width: {{ Math.floor( tileWidth ) }}
           </div>
       </div>
     </div>
@@ -52,28 +43,44 @@
     </div>
   </main>
 
-  <section id="options" class="p2">
-    <div>
-      <label>Hue {{ Math.floor(baseH) + '°' }}</label>
-      <input type="range" class="block full-width" max="255" v-model="baseH">
-      <label>Saturation {{ Math.floor(baseS * 100) + '%' }}</label>
-      <input type="range" class="block full-width" max="1" step=".001" v-model="baseS">
-      <label>Lightness</label>
-      <input type="range" class="block full-width" max="1" step=".001" v-model="baseL">
-    </div>
-  </section>
-  <section id="tests">
-    <!--
-    <div class="Tile-row">
-      <div class="Tile p2"
-        v-repeat="spectrum"
-        v-style="background-color: color, width: tileWidth + '%'">
-        {{ color }} {{ tileWidth }}
+
+  <section id="options" class="p2 mb4">
+    <div class="clearfix mxn2">
+      <form class="lg-col lg-col-3 px2">
+        <label class="block">Base Color</label>
+        <input type="color" class="right button rounded ml1" v-style="background-color: base" placeholder="e.g. #f00" v-model="base">
+        <div class="overflow-hidden">
+          <input type="text" class="block full-width input-dark" placeholder="base color" v-model="base">
+        </div>
+      </form>
+      <div class="md-col md-col-4 lg-col-3 px2">
+        <label>Hue {{ Math.floor(baseH) + '°' }}</label>
+        <div class="py1 rounded" style="" v-style="background-image: hGradient">
+          <input type="range" class="block m0 full-width" max="359" v-model="baseH">
+        </div>
+      </div>
+      <div class="md-col md-col-4 lg-col-3 px2">
+        <label>Saturation {{ Math.floor(baseS * 100) + '%' }}</label>
+        <div class="py1 rounded" style="" v-style="background-image: sGradient">
+          <input type="range" class="block m0 full-width" max="1" step=".001" v-model="baseS">
+        </div>
+      </div>
+      <div class="md-col md-col-4 lg-col-3 px2">
+        <label>Lightness {{ Math.floor(baseL * 100) + '%' }}</label>
+        <div class="py1 rounded" style="" v-style="background-image: lGradient">
+          <input type="range" class="block m0 full-width" max="1" step=".001" v-model="baseL">
+        </div>
       </div>
     </div>
-    -->
-    <pre class="bg-darken-1"> {{ Math.floor(baseHsl.h) }} {{ Math.floor(baseHsl.s * 100) }} {{ Math.floor(baseHsl.l * 100) }} </pre>
   </section>
+
+
+  <footer class="px2 py4 bg-mid-gray">
+    <p>
+      Made with love by
+      <a href="http://jxnblk.com" class="white">Jxnblk</a>
+    </p>
+  </footer>
 
   <script src="js/app.js"></script>
 </body>

@@ -17,6 +17,7 @@ app.data.baseHex = '#00c9fc';
 app.data.rows = [];
 
 
+
 app.computed = {};
 
 app.computed.base = {
@@ -78,6 +79,48 @@ app.computed.baseL = {
   }
 };
 
+app.computed.hGradient = function() {
+  var hsl = tinycolor(this.base).toHsl();
+  hsl.h = 0;
+  min = tinycolor(hsl).toHexString();
+  hsl.h = 119;
+  third = tinycolor(hsl).toHexString();
+  hsl.h = 239;
+  twoThirds = tinycolor(hsl).toHexString();
+  hsl.h = 359;
+  max = tinycolor(hsl).toHexString();
+  var bg = 'linear-gradient(90deg, ' + min + ', ' + third + ', ' + twoThirds + ', ' + max + ')';
+  return bg;
+};
+
+app.computed.sGradient = function() {
+  var hsl = tinycolor(this.base).toHsl();
+  hsl.s = 0;
+  var min = tinycolor(hsl).toHexString();
+  hsl.s = 1;
+  var max = tinycolor(hsl).toHexString();
+  var bg = 'linear-gradient(90deg, ' + min + ', ' + max + ')';
+  return bg;
+};
+
+app.computed.lGradient = function() {
+  var hsl = tinycolor(this.base).toHsl();
+  hsl.l = .5;
+  var half = tinycolor(hsl).toHexString();
+  hsl.l = 0.1;
+  var min = tinycolor(hsl).toHexString();
+  hsl.l = 0.9;
+  var max = tinycolor(hsl).toHexString();
+  var bg = 'linear-gradient(90deg, ' + min + ', ' + half + ', ' + max + ')';
+  return bg;
+};
+
+app.computed.shift = function() {
+  return {
+    s: 20,
+    l: 10
+  };
+};
 /**
 app.computed.spectrum = {
   $get: function() {

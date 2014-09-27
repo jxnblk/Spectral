@@ -826,6 +826,63 @@ td {
 }
 
 /*
+    Basscss Positions
+*/
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.bottom-0 {
+  bottom: 0;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.z1 {
+  z-index: 1;
+}
+
+.z2 {
+  z-index: 2;
+}
+
+.z3 {
+  z-index: 3;
+}
+
+.z4 {
+  z-index: 4;
+}
+
+.absolute-center {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  display: table;
+}
+
+/*
  * Basscss Color Basic
  */
 
@@ -855,7 +912,7 @@ hr {
   border: 0;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: rgba(0, 51, 102, .125);
+  border-bottom-color: rgba(0, 0, 0, .5);
 }
 
 .dark-gray {
@@ -871,7 +928,7 @@ hr {
 }
 
 .mid-gray {
-  color: #777;
+  color: #333;
 }
 
 .light-gray {
@@ -903,7 +960,7 @@ hr {
 }
 
 .bg-mid-gray {
-  background-color: #777;
+  background-color: #333;
 }
 
 .bg-light-gray {
@@ -927,41 +984,41 @@ hr {
 }
 
 .bg-darken-2 {
-  background-color: rgba(0, 51, 102, .0625);
+  background-color: rgba(0, 0, 0, .25);
 }
 
 .bg-darken-3 {
-  background-color: rgba(0, 51, 102, .125);
+  background-color: rgba(0, 0, 0, .5);
 }
 
 .border {
   border-style: solid;
   border-width: 1px;
-  border-color: rgba(0, 51, 102, .125);
+  border-color: rgba(0, 0, 0, .5);
 }
 
 .border-top {
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: rgba(0, 51, 102, .125);
+  border-top-color: rgba(0, 0, 0, .5);
 }
 
 .border-right {
   border-right-style: solid;
   border-right-width: 1px;
-  border-right-color: rgba(0, 51, 102, .125);
+  border-right-color: rgba(0, 0, 0, .5);
 }
 
 .border-bottom {
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: rgba(0, 51, 102, .125);
+  border-bottom-color: rgba(0, 0, 0, .5);
 }
 
 .border-left {
   border-left-style: solid;
   border-left-width: 1px;
-  border-left-color: rgba(0, 51, 102, .125);
+  border-left-color: rgba(0, 0, 0, .5);
 }
 
 .rounded {
@@ -980,7 +1037,7 @@ hr {
           transition: box-shadow .2s ease;
   border-style: solid;
   border-width: 1px;
-  border-color: rgba(0, 51, 102, .125);
+  border-color: rgba(0, 0, 0, .5);
   border-radius: 3px;
 }
 
@@ -1012,7 +1069,7 @@ hr {
 .table-light td {
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: rgba(0, 51, 102, .125);
+  border-bottom-color: rgba(0, 0, 0, .5);
 }
 
 .button-blue {
@@ -1059,7 +1116,7 @@ hr {
 
 .button-gray {
   color: white;
-  background-color: #777;
+  background-color: #333;
   border-radius: 3px;
   -webkit-transition-duration: .2s;
           transition-duration: .2s;
@@ -1087,17 +1144,13 @@ body {
   height: 100%;
 }
 
-header {
-  min-height: 12.5%;
+main {
+  height: 80%;
 }
 
-main {
-  height: 75%;
-}
-
-main {
-  height: 25%;
-}
+/*
+header { min-height: 12.5% }
+*/
 
 .lh3 {
   line-height: 3rem;
@@ -1124,13 +1177,12 @@ main {
   height: 100%;
   min-height: 8rem;
   overflow: hidden;
-  /*
-  background-color: #999;
-  transition:
-    width .2s ease,
+  -webkit-transition: width .2s ease,
     height .2s ease,
     background-color .5s ease;
-  */
+          transition: width .2s ease,
+    height .2s ease,
+    background-color .5s ease;
   position: relative;
 }
 
@@ -1150,4 +1202,29 @@ main {
 .transition-all {
   -webkit-transition: all .3s ease-out;
           transition: all .3s ease-out;
+}
+
+.button-dark {
+  color: white;
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 3px;
+}
+
+
+
+.button-dark:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, .25);
+}
+
+.input-dark {
+  color: white;
+  background-color: rgba(255, 255, 255, .125);
+  border: 0;
+  border-radius: 3px;
+}
+
+.input-dark:focus {
+  outline: 0;
+  box-shadow: inset 0 0 0 2px #0076df;
 }
