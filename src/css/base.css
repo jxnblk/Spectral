@@ -18,7 +18,7 @@
   --heading-font-weight: 600;
   --bold-font-weight: 600;
 
-  --dark-gray: #111;
+  --dark-gray: #222;
   --mid-gray: #333;
   --darken-2: rgba(#000, .25);
   --darken-3: rgba(#000, .5);
@@ -59,10 +59,10 @@ header { min-height: 12.5% }
   display: inline-block;
   font-size: 1rem;
   height: 100%;
-  min-height: 8rem;
   overflow: hidden;
   transition: width .2s ease, height .2s ease;
   position: relative;
+  color: rgba(#fff,.75);
 }
 .Tile > div {
   position: absolute;

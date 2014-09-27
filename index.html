@@ -2,6 +2,7 @@
 <html id="app">
   <meta charset="utf-8">
   <title>Spectral 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/base.css">
 <head>
 </head>
@@ -9,23 +10,14 @@
 
   <header class="absolute top-0 left-0 right-0 z1 clearfix lh3">
     <div class="right lh3 px2">
-      <button title="Remove Hue" class="icon-button button-dark" v-on="click: removeColumn()">
-        <svg v-icon="'chevron-left'" class="icon" viewBox="0 0 32 32"></svg>
-      </button>
-      <button title="Remove Row" class="icon-button button-dark" v-on="click: removeRow()">
-        <svg v-icon="'chevron-up'" class="icon" viewBox="0 0 32 32"></svg>
-      </button>
-      <button title="Add Row" class="icon-button button-dark" v-on="click: addRow()">
-        <svg v-icon="'chevron-down'" class="icon" viewBox="0 0 32 32"></svg>
-      </button>
-      <button title="Add Hue" class="icon-button button-dark" v-on="click: addColumn()">
-        <svg v-icon="'chevron-right'" class="icon" viewBox="0 0 32 32"></svg>
-      </button>
+      <a href="#!" class="button button-dark">
+        Tweet
+      </a>
     </div>
     <h1 class="h3 caps lh3 overflow-hidden px2 m0">Spectral <span class="h6">v2</span></h1>
   </header>
 
-  <main class="Tile-container clearfix">
+  <main class="Tile-container clearfix relative">
     <div class="Tile-row"
       v-style="height: 100 / (rows.length + 1) + '%'">
       <div class="Tile"
@@ -33,7 +25,7 @@
         v-style="
           background-color: color,
           width: tileWidth + '%'"> 
-          <div class="h6 caps bold center">
+          <div class="h6 caps bold center hide sm-show" v-if="tileWidth > 12">
             {{ color }}
           </div>
       </div>
@@ -46,10 +38,24 @@
         v-style="
           background-color: color.color,
           width: tileWidth + '%'"> 
-          <div class="h6 caps bold center">
+          <div class="h6 caps bold center hide sm-show" v-if="tileWidth > 12">
             {{ color.color }}
           </div>
       </div>
+    </div>
+    <div class="absolute bottom-0 right-0 p1">
+      <button title="Remove Hue" class="icon-button button-dark" v-on="click: removeColumn()">
+        <svg v-icon="'chevron-left'" class="icon" viewBox="0 0 32 32"></svg>
+      </button>
+      <button title="Remove Row" class="icon-button button-dark" v-on="click: removeRow()">
+        <svg v-icon="'chevron-up'" class="icon" viewBox="0 0 32 32"></svg>
+      </button>
+      <button title="Add Row" class="icon-button button-dark" v-on="click: addRow()">
+        <svg v-icon="'chevron-down'" class="icon" viewBox="0 0 32 32"></svg>
+      </button>
+      <button title="Add Hue" class="icon-button button-dark" v-on="click: addColumn()">
+        <svg v-icon="'chevron-right'" class="icon" viewBox="0 0 32 32"></svg>
+      </button>
     </div>
   </main>
 
@@ -82,11 +88,24 @@
         </div>
       </div>
     </div>
+    <div class="clearfix mxn2">
+      <h3 class="h5 caps px2">Row Transform</h3>
+      <div class="sm-col sm-col-6 px2">
+        <label>Saturation {{ shiftS }}</label>
+        <input type="range" class="block full-width"
+          min="-0.2" max="0.2" step="0.01" v-model="shiftS">
+      </div>
+      <div class="sm-col sm-col-6 px2">
+        <label>Lightness {{ shiftL }}</label>
+        <input type="range" class="block full-width"
+          min="-0.2" max="0.2" step="0.01" v-model="shiftL">
+      </div>
+    </div>
   </section>
 
 
-  <footer class="px2 py4 bg-mid-gray">
-    <p>
+  <footer class="px2 py4 bg-darken-3">
+    <p class="m0">
       Made with love by
       <a href="http://jxnblk.com" class="white">Jxnblk</a>
     </p>

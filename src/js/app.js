@@ -135,35 +135,76 @@ app.computed.spectrum = {
 app.computed.rows = {
   $get: function() {
     this.baseHex;
+    this.shiftS;
+    this.shiftL;
     var spectrum = this.spectrumArray;
     for (var i = 0; i < this.rowsArray.length; i++) {
       var row = { colors: [] };
       for (var j = 0; j < spectrum.length; j++) {
         var hsl = tinycolor(spectrum[j].color).toHsl();
-        hsl.s += this.shift.s * (i + 1);
-        hsl.l += this.shift.l * (i + 1);
+        hsl.s += this.shiftS * (i + 1);
+        hsl.l += this.shiftL * (i + 1);
         var color = tinycolor(hsl).toHexString();
         row.colors.push({ color: color });
-        console.log(color);
       }
       this.rowsArray[i] = row;
     }
     return this.rowsArray;
   },
   $set: function(val) {
-    console.log('set rows', val);
     this.rowsArray = val;
     return this.rowsArray;
   }
 };
 
-app.computed.shift = function() {
-  return {
-    s: -.2,
-    l: .1
-  };
+
+app.data.customShiftS = null;
+app.computed.shiftS = {
+  $get: function() {
+    if (this.customShiftS) {
+      console.log('has customShift', this.customShiftS);
+      return this.customShiftS;
+    } else {
+      var hsl = tinycolor(this.baseHex).toHsl();
+      var s;
+      if (hsl.s > .5) {
+        s = -.1;
+      } else {
+        s = .1;
+      }
+      return s;
+    }
+  },
+  $set: function(val) {
+    console.log('set shiftS', val);
+    this.customShiftS = val;
+    return this.customShiftS;
+  }
 };
 
+app.data.customShiftL = null;
+app.computed.shiftL = {
+  $get: function() {
+    if (this.customShiftL) {
+      console.log('has customShift', this.customShiftL);
+      return this.customShiftL;
+    } else {
+      var hsl = tinycolor(this.baseHex).toHsl();
+      var s;
+      if (hsl.s > .5) {
+        s = -.1;
+      } else {
+        s = .1;
+      }
+      return s;
+    }
+  },
+  $set: function(val) {
+    console.log('set shiftL', val);
+    this.customShiftL = val;
+    return this.customShiftL;
+  }
+};
 
 app.computed.tileWidth = function() {
   return 100 / (this.spectrum.length);
