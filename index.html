@@ -13,7 +13,6 @@
       <a href="#!" class="button button-dark">
         Tweet
       </a>
-      {{ state }}
     </div>
     <h1 class="h3 caps lh3 overflow-hidden px2 m0">
       Spectral
@@ -69,27 +68,31 @@
       <form class="lg-col lg-col-3 px2">
         <label class="block">Base Color</label>
         <div class="relative">
-          <input type="text" class="block full-width input-dark" placeholder="base color" v-model="base">
-          <input type="color" class="absolute top-0 right-0 button input-color" v-style="background-color: base" placeholder="e.g. #f00" v-model="base">
+          <input type="text" class="block full-width input-dark"
+          placeholder="base color"
+          v-model="base"
+          v-style="color: baseHex">
+          <input type="color" class="absolute top-0 right-0 button input-color"
+          v-style="background-color: baseHex"
+          placeholder="e.g. #f00" v-model="base">
         </div>
       </form>
       <div class="md-col md-col-4 lg-col-3 px2">
         <label>Hue {{ Math.floor(baseH) + '°' }}</label>
-        <div class="py1 rounded" style="" v-style="background-image: hGradient">
-          <input type="range" class="block m0 full-width" max="359" v-model="baseH">
-        </div>
+        <input type="range" class="block m0 full-width" max="359" v-model="baseH"
+          v-style="background-image: hGradient, color: baseHex">
       </div>
       <div class="md-col md-col-4 lg-col-3 px2">
         <label>Saturation {{ Math.floor(baseS * 100) + '%' }}</label>
-        <div class="py1 rounded" style="" v-style="background-image: sGradient">
-          <input type="range" class="block m0 full-width" max="1" step=".001" v-model="baseS">
-        </div>
+        <input type="range" class="block m0 full-width" max="1" step=".001"
+          v-model="baseS"
+          v-style="background-image: sGradient, color: baseHex">
       </div>
       <div class="md-col md-col-4 lg-col-3 px2">
         <label>Lightness {{ Math.floor(baseL * 100) + '%' }}</label>
-        <div class="py1 rounded" style="" v-style="background-image: lGradient">
-          <input type="range" class="block m0 full-width" max="1" step=".001" v-model="baseL">
-        </div>
+        <input type="range" class="block m0 full-width" max="1" step=".001"
+          v-model="baseL"
+          v-style="background-image: lGradient, color: baseHex">
       </div>
     </div>
     <div class="clearfix mxn2">
@@ -97,18 +100,20 @@
       <div class="sm-col sm-col-6 px2">
         <label>Saturation {{ shiftS }}</label>
         <input type="range" class="block full-width"
-          min="-0.2" max="0.2" step="0.01" v-model="shiftS">
+          min="-0.2" max="0.2" step="0.01" v-model="shiftS"
+          v-style="color: baseHex">
       </div>
       <div class="sm-col sm-col-6 px2">
         <label>Lightness {{ shiftL }}</label>
         <input type="range" class="block full-width"
-          min="-0.2" max="0.2" step="0.01" v-model="shiftL">
+          min="-0.2" max="0.2" step="0.01" v-model="shiftL"
+          v-style="color: baseHex">
       </div>
     </div>
   </section>
 
 
-  <footer class="px2 py4 bg-darken-3">
+  <footer class="px2 py4 xbg-darken-3">
     <p class="m0">
       Made with love by
       <a href="http://jxnblk.com" class="white">Jxnblk</a>
