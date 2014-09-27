@@ -4,7 +4,7 @@ var browserify = require('gulp-browserify');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync');
-
+var mincss = require('gulp-minify-css');
 var basswork = require('gulp-basswork');
 
 gulp.task('compile', function() {
@@ -16,6 +16,7 @@ gulp.task('compile', function() {
 gulp.task('basswork', function() {
   gulp.src('./src/css/base.css')
     .pipe(basswork())
+    .pipe(mincss())
     .pipe(gulp.dest('./css'));
 });
 
