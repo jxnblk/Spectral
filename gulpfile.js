@@ -20,7 +20,7 @@ gulp.task('basswork', function() {
 });
 
 gulp.task('serve', function() {
-  browserSync({ server: { baseDir: './' } , open: false, ghostMode: false });
+  browserSync({ server: { baseDir: './' } , open: false, ghostMode: false, notify: false });
 });
 
 
