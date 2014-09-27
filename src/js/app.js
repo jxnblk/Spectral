@@ -14,8 +14,8 @@ Vue.directive('icon', function(value) {
 var app = {};
 app.data = {};
 app.data.baseHex = '#00c9fc';
-app.data.rows = [];
-
+app.data.spectrumArray = [];
+app.data.rowsArray = [];
 
 
 app.computed = {};
@@ -115,40 +115,13 @@ app.computed.lGradient = function() {
   return bg;
 };
 
-app.computed.shift = function() {
-  return {
-    s: 20,
-    l: 10
-  };
-};
-/**
-app.computed.spectrum = {
-  $get: function() {
-    var self = this;
-    this.base;
-    this.baseColor;
-    var color = tinycolor(this.base);
-    var rotate = -360 / (self.spectrum.length + 1);
-    for (var i = 0; i < self.spectrum.length; i++) {
-      var hex = color.spin(rotate).toHexString();
-      self.spectrum[i] = hex;
-    }
-    return this.spectrum;
-  },
-  $set: function(val) {
-    this.spectrum= val;
-  }
-};
-*/
-
-app.data.spectrumArray = [];
-
 app.computed.spectrum = {
   $get: function() {
     this.baseHex;
     var color = tinycolor(this.baseHex);
     var rotate = -360 / (this.spectrumArray.length + 1);
-    for (var i = 0; i < this.spectrumArray.length; i++) {
+    this.spectrumArray[0] = { color: color.toHexString() };
+    for (var i = 1; i < this.spectrumArray.length; i++) {
       this.spectrumArray[i] = { color: color.spin(rotate).toHexString() };
     }
     return this.spectrumArray;
@@ -159,8 +132,41 @@ app.computed.spectrum = {
   }
 };
 
+app.computed.rows = {
+  $get: function() {
+    this.baseHex;
+    var spectrum = this.spectrumArray;
+    for (var i = 0; i < this.rowsArray.length; i++) {
+      var row = { colors: [] };
+      for (var j = 0; j < spectrum.length; j++) {
+        var hsl = tinycolor(spectrum[j].color).toHsl();
+        hsl.s += this.shift.s * (i + 1);
+        hsl.l += this.shift.l * (i + 1);
+        var color = tinycolor(hsl).toHexString();
+        row.colors.push({ color: color });
+        console.log(color);
+      }
+      this.rowsArray[i] = row;
+    }
+    return this.rowsArray;
+  },
+  $set: function(val) {
+    console.log('set rows', val);
+    this.rowsArray = val;
+    return this.rowsArray;
+  }
+};
+
+app.computed.shift = function() {
+  return {
+    s: -.2,
+    l: .1
+  };
+};
+
+
 app.computed.tileWidth = function() {
-  return 100 / (this.spectrum.length + 1);
+  return 100 / (this.spectrum.length);
 };
 
 
@@ -179,6 +185,15 @@ app.methods.removeColumn = function() {
   this.spectrumArray.splice(this.spectrumArray.length - 1);
 };
 
+app.methods.addRow = function() {
+  if (this.rowsArray.length > 7) return false;
+  this.rowsArray.push([]);
+};
+
+app.methods.removeRow = function() {
+  if (this.rowsArray.length < 1) return false;
+  this.rowsArray.splice(this.rowsArray.length - 1);
+};
 
 app.created = function() {
   console.log('app created');

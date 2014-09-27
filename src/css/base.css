@@ -26,7 +26,7 @@
 }
 
 html, body { height: 100% }
-main   { height: 80% }
+main   { height: 87.5% }
 
 /*
 header { min-height: 12.5% }
@@ -37,7 +37,13 @@ header { min-height: 12.5% }
   width: 1em;
   height: 1em;
   position: relative;
-  top: .125em;
+  top: .1875em;
+}
+
+.icon-button {
+  width: 2.5rem;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .Tile-container {
@@ -74,6 +80,23 @@ header { min-height: 12.5% }
 
 .transition-all {
   transition: all .3s ease-out;
+}
+
+.input-color {
+  width: 1.75rem;
+  height: 1.75rem;
+  line-height: 1rem;
+  margin: .25rem;
+  min-height: 0;
+  padding: 0;
+  border-radius: var(--border-radius);
+}
+.input-color:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(#fff,.125);
+}
+.input-color::-webkit-color-swatch-wrapper {
+  display: none;
 }
 
 .button-dark {
