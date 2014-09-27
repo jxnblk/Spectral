@@ -55,10 +55,7 @@ header { min-height: 12.5% }
   height: 100%;
   min-height: 8rem;
   overflow: hidden;
-  transition:
-    width .2s ease,
-    height .2s ease,
-    background-color .5s ease;
+  transition: width .2s ease, height .2s ease;
   position: relative;
 }
 .Tile > div {
