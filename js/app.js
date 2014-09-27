@@ -5753,12 +5753,6 @@ app.computed.spectrum = {
   },
   $set: function(arr) {
     this.spectrumArray = arr;
-    this.baseHex;
-    var color = tinycolor(this.baseHex);
-    var rotate = -360 / (this.spectrumArray.length + 1);
-    for (var i = 0; i < this.spectrumArray.length; i++) {
-      this.spectrumArray[i] = { color: color.spin(rotate).toHexString() };
-    }
     return this.spectrumArray;
   }
 };
