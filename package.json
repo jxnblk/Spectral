@@ -1,11 +1,7 @@
 {
   "name": "Spectral",
   "version": "0.0.1",
-  "description": "Automatic color palette",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Color spectrum explorer",
   "repository": {
     "type": "git",
     "url": "git://github.com/jxnblk/Spectral.git"
