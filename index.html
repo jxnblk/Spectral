@@ -26,15 +26,20 @@
       Spectral
       <span class="h6">v2</span>
     </h1>
+    <div class="VFade md-col-6 bold center mx-auto px4 dark-gray bg-white rounded"
+      v-transition
+      v-on="click: flashMessage = false"
+      v-if="flashMessage">
+      {{ flashMessage }}
+    </div>
   </header>
 
   <main class="Tile-container clearfix relative">
     <div class="Tile-row"
       v-style="height: 100 / (rows.length + 1) + '%'">
       <div class="Tile"
-        data-clipboard-text="{{ color }}"
         v-repeat="spectrum"
-        v-on="click: copyColor(color)"
+        v-zeroclip="color"
         v-style="
           background-color: color,
           width: tileWidth + '%'"> 
@@ -48,6 +53,7 @@
       v-style="height: 100 / (rows.length + 1) + '%'">
       <div class="Tile"
         v-repeat="color: row.colors"
+        v-zeroclip="color.color"
         v-style="
           background-color: color.color,
           width: tileWidth + '%'"> 
@@ -56,7 +62,7 @@
           </div>
       </div>
     </div>
-    <div class="absolute bottom-0 right-0 p1">
+    <div id="grid-controls" class="absolute bottom-0 right-0 p1">
       <button title="Remove Hue" class="icon-button button-dark" v-on="click: removeColumn()">
         <svg v-icon="'chevron-left'" class="icon" viewBox="0 0 32 32"></svg>
       </button>

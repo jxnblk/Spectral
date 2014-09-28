@@ -267,17 +267,28 @@ app.methods.handleKeydown = function(e) {
   //console.log(e);
 };
 
-var zeroclip = new ZeroClipboard();
-zeroclip.on('ready', function() {
-  console.log('zero ready');
-});
-zeroclip.on('copyafter', function() {
-  console.log('copied');
+
+Vue.directive('zeroclip', function(value) {
+  var root = this.vm.$root;
+  var clip = new ZeroClipboard(this.el);
+  clip.on('ready', function() {
+    clip.setText(value);
+    clip.on('aftercopy', function(e) {
+      root.flash(value + ' copied to clipboard');
+    });
+  });
 });
 
-app.methods.copyColor = function(color) {
-  console.log('copy this', color);
-  zeroclip.setText(color);
+app.data.flashMessage = false;
+
+app.methods.flash = function(value) {
+  var self = this;
+  var timeout = window.setTimeout(clearMessage, 2000);
+  function clearMessage() {
+    self.flashMessage = false;
+    window.clearTimeout(timeout);
+  };
+  this.flashMessage = value;
 };
 
 app.created = function() {

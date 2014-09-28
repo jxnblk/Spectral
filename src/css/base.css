@@ -74,15 +74,19 @@ header { min-height: 12.5% }
   right: 0;
 }
 
-/*
-.Tile.v-enter {
+.VFade {
+  opacity: .875;
+  transform: scale(1);
+  transition: all .1s ease-in;
 }
-.Tile.v-leave { opacity: .4; }
-*/
+.VFade.v-enter,
+.VFade.v-leave {
+  transform: scale(.25);
+  opacity: 0.2;
+}
 
-.transition-all {
-  transition: all .3s ease-out;
-}
+.transition-all { transition: all .3s ease-out; }
+.transition-bg { transition: background .2s ease, width .2s ease-out }
 
 .input-color {
   width: 1.75rem;
