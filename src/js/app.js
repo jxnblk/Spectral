@@ -270,10 +270,13 @@ app.methods.handleKeydown = function(e) {
 
 Vue.directive('zeroclip', function(value) {
   var root = this.vm.$root;
-  var clip = new ZeroClipboard(this.el);
-  clip.on('ready', function() {
-    clip.setText(value);
-    clip.on('aftercopy', function(e) {
+  var self = this;
+  this.clip = new ZeroClipboard(this.el);
+  this.clip.on('ready', function() {
+    self.clip.on('copy', function() {
+      self.clip.setText(value);
+    });
+    self.clip.on('aftercopy', function(e) {
       root.flash(value + ' copied to clipboard');
     });
   });
