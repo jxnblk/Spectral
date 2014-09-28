@@ -5854,7 +5854,7 @@ app.computed.tileWidth = function() {
 app.methods = {};
 
 app.methods.addColumn = function() {
-  if (this.spectrumArray.length > 7) return false;
+  if (this.spectrumArray.length > 15) return false;
   var color = tinycolor(this.baseHex);
   var arr = this.spectrumArray;
   arr.push({ color: color.toHexString() });
@@ -5868,13 +5868,15 @@ app.methods.removeColumn = function() {
   this.updateState();
 };
 
-app.methods.addRow = function() {
+app.methods.addRow = function(e) {
+  e.preventDefault();
   if (this.rowsArray.length > 7) return false;
   this.rowsArray.push([]);
   this.updateState();
 };
 
-app.methods.removeRow = function() {
+app.methods.removeRow = function(e) {
+  e.preventDefault();
   if (this.rowsArray.length < 1) return false;
   this.rowsArray.splice(this.rowsArray.length - 1);
   this.updateState();
@@ -5894,6 +5896,10 @@ app.methods.updateState = function() {
     '&shiftS=' + this.shiftS +
     '&shiftL=' + this.shiftL;
   window.history.pushState({ base: this.baseHex }, '', str);
+};
+
+app.methods.handleKeydown = function(e) {
+  console.log(e);
 };
 
 app.created = function() {

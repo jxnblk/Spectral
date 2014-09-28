@@ -6,7 +6,13 @@
   <link rel="stylesheet" href="css/base.css">
 <head>
 </head>
-<body class="white bg-dark-gray">
+<body
+  class="white bg-dark-gray"
+  v-on="
+  keydown: addColumn | key right, keydown: addColumn | key 76,
+    keydown: removeColumn | key left, keydown: removeColumn | key 72,
+    keydown: addRow($event) | key down, keydown: addRow($event) | key 74,
+    keydown: removeRow($event) | key up, keydown: removeRow($event) | key 75">
 
   <header class="absolute top-0 left-0 right-0 z1 clearfix lh3">
     <div class="right lh3 px2">
@@ -50,11 +56,11 @@
       <button title="Remove Hue" class="icon-button button-dark" v-on="click: removeColumn()">
         <svg v-icon="'chevron-left'" class="icon" viewBox="0 0 32 32"></svg>
       </button>
-      <button title="Remove Row" class="icon-button button-dark" v-on="click: removeRow()">
-        <svg v-icon="'chevron-up'" class="icon" viewBox="0 0 32 32"></svg>
-      </button>
       <button title="Add Row" class="icon-button button-dark" v-on="click: addRow()">
         <svg v-icon="'chevron-down'" class="icon" viewBox="0 0 32 32"></svg>
+      </button>
+      <button title="Remove Row" class="icon-button button-dark" v-on="click: removeRow()">
+        <svg v-icon="'chevron-up'" class="icon" viewBox="0 0 32 32"></svg>
       </button>
       <button title="Add Hue" class="icon-button button-dark" v-on="click: addColumn()">
         <svg v-icon="'chevron-right'" class="icon" viewBox="0 0 32 32"></svg>
