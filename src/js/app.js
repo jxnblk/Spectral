@@ -7,8 +7,7 @@ var vueTouch = require('vue-touch');
 Vue.use(vueTouch);
 
 Vue.directive('icon', function(value) {
-  if (!this.el) return false;
-  this.el.dataset.icon = value;
+  //this.el.dataset.icon = value;
   Geomicons.inject(this.el);
 });
 
