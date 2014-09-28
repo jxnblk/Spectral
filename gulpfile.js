@@ -10,6 +10,7 @@ var basswork = require('gulp-basswork');
 gulp.task('compile', function() {
   gulp.src('./src/js/app.js')
     .pipe(browserify())
+    .pipe(uglify())
     .pipe(gulp.dest('./js'));
 });
 

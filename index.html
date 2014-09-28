@@ -32,7 +32,9 @@
     <div class="Tile-row"
       v-style="height: 100 / (rows.length + 1) + '%'">
       <div class="Tile"
+        data-clipboard-text="{{ color }}"
         v-repeat="spectrum"
+        v-on="click: copyColor(color)"
         v-style="
           background-color: color,
           width: tileWidth + '%'"> 
@@ -127,6 +129,11 @@
       <a href="http://jxnblk.com" class="white">Jxnblk</a>
     </p>
   </footer>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
+  <!--
+  <script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.min.js"></script>
+  -->
 
   <script src="js/app.js"></script>
 </body>

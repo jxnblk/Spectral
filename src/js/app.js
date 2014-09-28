@@ -1,8 +1,9 @@
 
 
-var Vue = require('vue');
+//var Vue = require('vue');
 var Geomicons = require('geomicons-open');
 var tinycolor = require('tinycolor2');
+//var ZeroClipboard = require('zeroclipboard');
 
 
 Vue.directive('icon', function(value) {
@@ -252,13 +253,6 @@ app.methods.removeRow = function(e) {
   this.updateState();
 };
 
-/*
-app.computed.state = function() {
-  this.updateState();
-  return window.location.hash;
-};
-*/
-
 app.methods.updateState = function() {
   var str = this.baseHex +
     '&hues=' + this.spectrum.length +
@@ -270,6 +264,12 @@ app.methods.updateState = function() {
 
 app.methods.handleKeydown = function(e) {
   //console.log(e);
+};
+
+//app.data.zeroclip = new ZeroClipboard();
+app.methods.copyColor = function(color) {
+  //console.log('copy this', color);
+  //this.zeroclip.setText(color);
 };
 
 app.created = function() {

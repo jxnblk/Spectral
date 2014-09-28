@@ -33,7 +33,8 @@
     "gulp-basswork": "latest",
     "basscss-grid": "0.0.9",
     "basscss-positions": "0.0.2",
-    "gulp-minify-css": "^0.3.10"
+    "gulp-minify-css": "^0.3.10",
+    "zeroclipboard": "^2.1.6"
   },
   "dependencies": {
     "vue": "^0.10.6"
