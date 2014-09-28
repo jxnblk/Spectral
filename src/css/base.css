@@ -47,6 +47,7 @@ header { min-height: 12.5% }
 }
 
 .Tile-container {
+  overflow: hidden;
 }
 
 .Tile-row {
@@ -65,13 +66,15 @@ header { min-height: 12.5% }
   position: relative;
   color: rgba(#fff,.75);
 }
-.Tile > div {
+.Tile > div,
+.Tile > a {
   position: absolute;
   line-height: 1em;
   margin-top: -.5em;
   top: 50%;
   left: 0;
   right: 0;
+  color: inherit;
 }
 
 .VFade {

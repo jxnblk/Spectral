@@ -225,7 +225,8 @@ app.computed.tileWidth = function() {
 
 app.methods = {};
 
-app.methods.addColumn = function() {
+app.methods.addColumn = function(e) {
+  if (e) e.preventDefault();
   if (this.spectrumArray.length > 15) return false;
   var color = tinycolor(this.baseHex);
   var arr = this.spectrumArray;
@@ -271,12 +272,12 @@ app.methods.handleKeydown = function(e) {
 Vue.directive('zeroclip', function(value) {
   var root = this.vm.$root;
   var self = this;
-  this.clip = new ZeroClipboard(this.el);
-  this.clip.on('ready', function() {
-    self.clip.on('copy', function() {
-      self.clip.setText(value);
+  var clip = new ZeroClipboard(this.el);
+  clip.on('ready', function() {
+    clip.on('copy', function() {
+      clip.setText(value);
     });
-    self.clip.on('aftercopy', function(e) {
+    clip.on('aftercopy', function(e) {
       root.flash(value + ' copied to clipboard');
     });
   });
@@ -323,32 +324,12 @@ app.created = function() {
     if (obj.shiftL) this.shiftL = obj.shiftL;
   };
 
-  window.onpopstate = function(e) {
-    //console.log('pop', e);
-    var obj = parseHash(window.location.hash);
-    //self.base = obj.base;
-    var hues = eval(obj.hues);
-    /*
-    if (hues != self.spectrum.length) {
-      console.log('reset spectrum');
-      self.spectrum = [];
-      console.log('length', self.spectrum.length);
-      for (var i = 1; i < hues; i++) {
-        console.log('add column' + i);
-        self.addColumn();
-      }
-    }
-    */
-    /*
-    if (obj.rows != self.rows.length) {
-      console.log('reset rows');
-      self.rows = [];
-      for (var i = 0; i < obj.rows; i++) {
-        self.addRow();
-      }
-    }
-    */
-  };
+  //window.onpopstate = function(e) {
+  //  //console.log('pop', e);
+  //  var obj = parseHash(window.location.hash);
+  //  //self.base = obj.base;
+  //  var hues = eval(obj.hues);
+  //};
 };
 
 var view = new Vue({

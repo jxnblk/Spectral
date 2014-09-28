@@ -36,18 +36,20 @@
     </div>
   </header>
 
-  <main class="Tile-container clearfix relative" v-touch="swipeleft: addColumn()">
+  <main class="Tile-container clearfix relative">
     <div class="Tile-row"
       v-style="height: 100 / (rows.length + 1) + '%'">
       <div class="Tile"
         v-repeat="spectrum"
-        v-zeroclip="color"
         v-style="
           background-color: color,
           width: tileWidth + '%'"> 
-          <div class="h6 caps bold center hide sm-show" v-if="tileWidth > 12">
+          <a class="h6 caps bold center hide sm-show"
+            title="Copy {{ color }} to clipboard"
+            v-zeroclip="color"
+            v-if="tileWidth > 12">
             {{ color }}
-          </div>
+          </a>
       </div>
     </div>
     <div class="Tile-row"
@@ -55,33 +57,31 @@
       v-style="height: 100 / (rows.length + 1) + '%'">
       <div class="Tile"
         v-repeat="color: row.colors"
-        v-zeroclip="color.color"
         v-style="
           background-color: color.color,
           width: tileWidth + '%'"> 
-          <div class="h6 caps bold center hide sm-show" v-if="tileWidth > 12">
+          <a class="h6 caps bold center hide sm-show"
+            title="Copy {{ color }} to clipboard"
+            v-zeroclip="color.color"
+            v-if="tileWidth > 12">
             {{ color.color }}
-          </div>
+          </a>
       </div>
     </div>
-    <div id="grid-controls" class="absolute bottom-0 right-0 p1">
+    <div id="grid-controls" class="absolute bottom-0 right-0 z1 p1">
       <button title="Remove Hue" class="icon-button button-dark"
-        v-on="click: removeColumn()"
         v-touch="tap: removeColumn()">
         <svg v-icon="'chevron-left'" class="icon" viewBox="0 0 32 32"></svg>
       </button>
       <button title="Add Row" class="icon-button button-dark"
-        v-on="click: addRow()"
         v-touch="tap: addRow()">
         <svg v-icon="'chevron-down'" class="icon" viewBox="0 0 32 32"></svg>
       </button>
       <button title="Remove Row" class="icon-button button-dark"
-        v-on="click: removeRow()"
         v-touch="tap: removeRow()">
         <svg v-icon="'chevron-up'" class="icon" viewBox="0 0 32 32"></svg>
       </button>
       <button title="Add Hue" class="icon-button button-dark"
-        v-on="click: addColumn()"
         v-touch="tap: addColumn()">
         <svg v-icon="'chevron-right'" class="icon" viewBox="0 0 32 32"></svg>
       </button>
