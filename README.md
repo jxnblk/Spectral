@@ -1,6 +1,6 @@
 Spectral
 ========
 
-A Simple CSS Color Palette Creator
+Click the Rainbow
 
 http://jxnblk.github.io/Spectral
