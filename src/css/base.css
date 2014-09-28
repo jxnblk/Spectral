@@ -53,12 +53,14 @@ header { min-height: 12.5% }
   overflow: hidden;
   font-size: 0;
   white-space: nowrap;
+  transition: height .2s ease;
 }
 
 .Tile {
   display: inline-block;
   font-size: 1rem;
   height: 100%;
+  width: 100%;
   overflow: hidden;
   transition: width .2s ease, height .2s ease;
   position: relative;
@@ -73,9 +75,10 @@ header { min-height: 12.5% }
   right: 0;
 }
 
-.Tile.v-enter {
-}
+.Tile.v-enter,
 .Tile.v-leave {
+  font-size: .875%;
+  transition: width .2s ease, height .2s ease;
 }
 
 .transition-all {
