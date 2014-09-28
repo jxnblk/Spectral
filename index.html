@@ -2,7 +2,7 @@
 <html id="app">
   <meta charset="utf-8">
   <title>Spectral 2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <link rel="stylesheet" href="css/base.css">
 <head>
 </head>
@@ -10,7 +10,7 @@
 
   <header class="absolute top-0 left-0 right-0 z1 clearfix lh3">
     <div class="right lh3 px2">
-      <a href="#!" class="button button-dark">
+      <a href="https://twitter.com/intent/tweet?text=Explore the color spectrum with Spectral&amp;url=http://jxnblk.github.io/Spectral&amp;via=jxnblk" class="h5 button button-dark">
         Tweet
       </a>
     </div>
@@ -65,7 +65,7 @@
 
   <section id="options" class="p2 mb4">
     <div class="clearfix mxn2">
-      <form class="lg-col lg-col-3 px2">
+      <form class="lg-col lg-col-3 px2 py1">
         <label class="block">Base Color</label>
         <div class="relative">
           <input type="text" class="block full-width input-dark"
@@ -77,18 +77,18 @@
           placeholder="e.g. #f00" v-model="base">
         </div>
       </form>
-      <div class="md-col md-col-4 lg-col-3 px2">
+      <div class="md-col md-col-4 lg-col-3 px2 py1 noselect">
         <label>Hue {{ Math.floor(baseH) + '°' }}</label>
         <input type="range" class="block m0 full-width" max="359" v-model="baseH"
           v-style="background-image: hGradient, color: baseHex">
       </div>
-      <div class="md-col md-col-4 lg-col-3 px2">
+      <div class="md-col md-col-4 lg-col-3 px2 py1 noselect">
         <label>Saturation {{ Math.floor(baseS * 100) + '%' }}</label>
         <input type="range" class="block m0 full-width" max="1" step=".001"
           v-model="baseS"
           v-style="background-image: sGradient, color: baseHex">
       </div>
-      <div class="md-col md-col-4 lg-col-3 px2">
+      <div class="md-col md-col-4 lg-col-3 px2 py1 noselect">
         <label>Lightness {{ Math.floor(baseL * 100) + '%' }}</label>
         <input type="range" class="block m0 full-width" max="1" step=".001"
           v-model="baseL"
@@ -97,13 +97,13 @@
     </div>
     <div class="clearfix mxn2">
       <h3 class="h5 caps px2">Row Transform</h3>
-      <div class="sm-col sm-col-6 px2">
+      <div class="sm-col sm-col-6 px2 py1 noselect">
         <label>Saturation {{ shiftS }}</label>
         <input type="range" class="block full-width"
           min="-0.2" max="0.2" step="0.01" v-model="shiftS"
           v-style="color: baseHex">
       </div>
-      <div class="sm-col sm-col-6 px2">
+      <div class="sm-col sm-col-6 px2 py1 noselect">
         <label>Lightness {{ shiftL }}</label>
         <input type="range" class="block full-width"
           min="-0.2" max="0.2" step="0.01" v-model="shiftL"
