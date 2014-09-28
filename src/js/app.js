@@ -145,10 +145,11 @@ app.computed.rows = {
     this.shiftS;
     this.shiftL;
     this.spectrum;
+    //this.spectrumArray;
     var spectrum = this.spectrumArray;
     for (var i = 0; i < this.rowsArray.length; i++) {
-      var row = this.rowsArray[i] || [{ newRow: true, colors: [] }];
-      row.colors.splice(row.colors.length - 1, 32);
+      var row = this.rowsArray[i] || [{ colors: [] }];
+      row.colors.splice(this.spectrum.length, 32);
       for (var j = 0; j < spectrum.length; j++) {
         var hsl = tinycolor(spectrum[j].color).toHsl();
         hsl.s += this.shiftS * (i + 1);
@@ -266,15 +267,22 @@ app.methods.handleKeydown = function(e) {
   //console.log(e);
 };
 
-//app.data.zeroclip = new ZeroClipboard();
+var zeroclip = new ZeroClipboard();
+zeroclip.on('ready', function() {
+  console.log('zero ready');
+});
+zeroclip.on('copyafter', function() {
+  console.log('copied');
+});
+
 app.methods.copyColor = function(color) {
-  //console.log('copy this', color);
-  //this.zeroclip.setText(color);
+  console.log('copy this', color);
+  zeroclip.setText(color);
 };
 
 app.created = function() {
 
-  console.log('app created');
+  console.log('S P E C T R A L');
   var self = this;
 
   function parseHash(str) {
