@@ -18,7 +18,7 @@
 
   <header class="absolute top-0 left-0 right-0 z1 clearfix lh3">
     <div class="right lh3 px2">
-      <a href="https://twitter.com/intent/tweet?text=Explore the color spectrum with Spectral&amp;url=http://jxnblk.github.io/Spectral&amp;via=jxnblk"
+      <a href="https://twitter.com/intent/tweet?text=Spectral: color exploration tool&amp;url=http://jxnblk.github.io/Spectral&amp;via=jxnblk"
         target="_blank"
         class="h5 button button-dark">
         Tweet
@@ -28,7 +28,7 @@
       Spectral
       <span class="h6">v2</span>
     </h1>
-    <div class="VFade md-col-6 bold center mx-auto px4 dark-gray bg-white rounded"
+    <div class="VFade col-10 sm-col-9 md-col-7 lg-col-5 bold center mx-auto dark-gray bg-white rounded"
       v-transition
       v-on="click: flashMessage = false"
       v-if="flashMessage">
@@ -44,7 +44,7 @@
         v-style="
           background-color: color,
           width: tileWidth + '%'"> 
-          <a class="h6 caps bold center hide sm-show"
+          <a class="h6 caps bold center button hide sm-show"
             title="Copy {{ color }} to clipboard"
             v-zeroclip="color"
             v-if="tileWidth > 12">
@@ -60,8 +60,8 @@
         v-style="
           background-color: color.color,
           width: tileWidth + '%'"> 
-          <a class="h6 caps bold center hide sm-show"
-            title="Copy {{ color }} to clipboard"
+          <a class="h6 caps bold center button hide sm-show"
+            title="Copy {{ color.color }} to clipboard"
             v-zeroclip="color.color"
             v-if="tileWidth > 12">
             {{ color.color }}
@@ -89,15 +89,14 @@
   </main>
 
 
-  <section id="options" class="p2 mb4">
+  <section id="options" class="p2">
     <div class="clearfix mxn2">
       <form class="lg-col lg-col-3 px2 mb1">
         <label class="block caps bold">Base Color</label>
         <div class="relative">
-          <input type="text" class="block full-width input-dark"
+          <input type="text" class="caps block full-width input-dark"
           placeholder="base color"
-          v-model="base"
-          v-style="color: baseHex">
+          v-model="base">
           <input type="color" class="absolute top-0 right-0 button input-color"
           v-style="background-color: baseHex"
           placeholder="e.g. #f00" v-model="base">
@@ -121,7 +120,7 @@
           v-style="background-image: lGradient, color: baseHex">
       </div>
     </div>
-    <div class="clearfix mxn2">
+    <div class="clearfix mxn2 mb2">
       <h3 class="h4 caps px2">Row Color Shift</h3>
       <div class="sm-col sm-col-6 px2 mb1 noselect">
         <label>Saturation {{ Math.floor(shiftS * 1000) / 10 + '%' }}</label>
@@ -136,13 +135,30 @@
           v-style="color: baseHex">
       </div>
     </div>
+    <div>
+      <button type="reset" class="button-dark"
+        v-show="!resetConfirm"
+        v-on="click: resetConfirm = true">
+        Reset Colors
+      </button>
+      <button type="reset" class="button-dark" style="background-color:red"
+        v-show="resetConfirm"
+        v-on="click: reset(), click: resetConfirm = false">
+        Reset
+      </button>
+      <button class="button-dark" v-show="resetConfirm" v-on="click: resetConfirm = false">Cancel</button>
+    </div>
   </section>
 
 
-  <footer class="px2 py4 xbg-darken-3">
-    <p class="m0">
+  <footer class="px2 py3">
+    <p class="right-align m0">
+      <a href="http://github.com/jxnblk/Spectral" class="bold">View on Github</a>.
+      <br class="md-hide">
+      Powered by <a href="http://vuejs.org/">Vuejs</a> and <a href="https://github.com/bgrins/TinyColor">TinyColor</a>.
+      <br class="md-hide">
       Made with love by
-      <a href="http://jxnblk.com" class="white">Jxnblk</a>
+      <a href="http://jxnblk.com" class="">Jxnblk</a>.
     </p>
   </footer>
 

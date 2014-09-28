@@ -7,6 +7,7 @@ var vueTouch = require('vue-touch');
 Vue.use(vueTouch);
 
 Vue.directive('icon', function(value) {
+  if (!this.el) return false;
   this.el.dataset.icon = value;
   Geomicons.inject(this.el);
 });
@@ -253,6 +254,15 @@ app.methods.removeRow = function(e) {
   if (this.rowsArray.length < 1) return false;
   this.rowsArray.splice(this.rowsArray.length - 1);
   this.updateState();
+};
+
+app.methods.reset = function() {
+  this.rowsArray = [];
+  this.spectrum = [];
+  this.shiftS = null;
+  this.shiftL = null;
+  this.baseHex = '#00c9fc';
+  window.location.hash = '';
 };
 
 app.methods.updateState = function() {

@@ -28,9 +28,8 @@
 html, body { height: 100% }
 main   { height: 87.5% }
 
-/*
-header { min-height: 12.5% }
-*/
+a { color: white; text-decoration: underline; }
+
 .lh3 { line-height: 3rem; }
 
 .icon {
@@ -69,8 +68,7 @@ header { min-height: 12.5% }
 .Tile > div,
 .Tile > a {
   position: absolute;
-  line-height: 1em;
-  margin-top: -.5em;
+  margin-top: -1em;
   top: 50%;
   left: 0;
   right: 0;
