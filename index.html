@@ -1,30 +1,167 @@
 <!doctype html>
-<html lang="en" ng-app="spectral">
-<head>
+<html id="app">
   <meta charset="utf-8">
   <title>Spectral</title>
-  <meta name="description" content="A Simple CSS Color Palette Creator by Jxnblk">
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script type="text/javascript" src="//use.typekit.net/nvo4ukh.js"></script>
-  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta name="description" content="Click the Rainbow. Spectral is a math-based HSL color exploration tool built with Vuejs and TinyColor">
+  <meta name="author" content="Brent Jackson">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="icon" href="favicon.png">
+<head>
 </head>
-<body class="bg-dkgry">
-  <div class="bg-wht">
-    <header class="pt1 pr2 pb1 pl2 mdgry">
-      <h1 class="h2 reg">Spectral</h1>
-      <p>A Simple CSS Color Palette Creator</p>
-    </header>
+<body class="white bg-dark-gray"
+  v-on="keydown: addColumn | key right, keydown: removeColumn | key left,
+    keydown: addRow($event) | key down, keydown: removeRow($event) | key up">
 
-    <div ng-view></div>
-  </div>
+  <header class="absolute top-0 left-0 right-0 z1 clearfix lh3">
+    <div class="right lh3 px2">
+      <a href="https://twitter.com/intent/tweet?text=Spectral: click the rainbow&amp;url=http://jxnblk.github.io/Spectral&amp;via=jxnblk"
+        title="Share Spectral on Twitter"
+        target="_blank"
+        class="h5 button button-dark">
+        Tweet
+      </a>
+    </div>
+    <h1 class="h3 caps lh3 overflow-hidden px2 m0">
+      Spectral
+      <span class="h6">v2</span>
+    </h1>
+    <div class="VFade col-10 sm-col-9 md-col-7 lg-col-5 bold center mx-auto dark-gray bg-white rounded"
+      v-transition
+      v-on="click: flashMessage = false"
+      v-if="flashMessage">
+      {{ flashMessage }}
+    </div>
+  </header>
 
-  
+  <main class="Tile-container clearfix relative">
+    <div class="Tile-row"
+      v-style="height: 100 / (rows.length + 1) + '%'">
+      <div class="Tile"
+        v-repeat="spectrum"
+        v-style="
+          background-color: color,
+          width: tileWidth + '%'"> 
+          <a class="h6 caps bold center button hide sm-show"
+            title="Copy {{ color }} to clipboard"
+            v-zeroclip="color"
+            v-if="tileWidth > 12">
+            {{ color }}
+          </a>
+      </div>
+    </div>
+    <div class="Tile-row"
+      v-repeat="row : rows"
+      v-style="height: 100 / (rows.length + 1) + '%'">
+      <div class="Tile"
+        v-repeat="color: row.colors"
+        v-style="
+          background-color: color.color,
+          width: tileWidth + '%'"> 
+          <a class="h6 caps bold center button hide sm-show"
+            title="Copy {{ color.color }} to clipboard"
+            v-zeroclip="color.color"
+            v-if="tileWidth > 12">
+            {{ color.color }}
+          </a>
+      </div>
+    </div>
+    <div id="grid-controls" class="absolute bottom-0 right-0 z1 p1 m1" v-class="blinker: showCoach">
+      <button title="Remove Hue" class="icon-button button-dark"
+        v-touch="tap: removeColumn()">
+        <svg v-icon="'chevron-left'" class="icon" data-icon="chevron-left" viewBox="0 0 32 32"></svg>
+      </button>
+      <button title="Add Row" class="icon-button button-dark"
+        v-touch="tap: addRow()">
+        <svg v-icon="'chevron-down'" class="icon" data-icon="chevron-down" viewBox="0 0 32 32"></svg>
+      </button>
+      <button title="Remove Row" class="icon-button button-dark"
+        v-touch="tap: removeRow()">
+        <svg v-icon="'chevron-up'" class="icon" data-icon="chevron-up" viewBox="0 0 32 32"></svg>
+      </button>
+      <button title="Add Hue" class="icon-button button-dark"
+        v-touch="tap: addColumn()">
+        <svg v-icon="'chevron-right'" class="icon" data-icon="chevron-right" viewBox="0 0 32 32"></svg>
+      </button>
+    </div>
+  </main>
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+
+  <section id="options" class="p2">
+    <div class="clearfix mxn2">
+      <form class="lg-col lg-col-3 px2 mb1">
+        <label class="block caps bold">Base Color</label>
+        <div class="relative">
+          <input type="text" class="caps block full-width input-dark"
+          placeholder="base color"
+          v-model="base">
+          <input type="color" class="absolute top-0 right-0 button input-color"
+          v-style="background-color: baseHex"
+          placeholder="e.g. #f00" v-model="base">
+        </div>
+      </form>
+      <div class="sm-col sm-col-4 lg-col-3 px2 mb1 noselect">
+        <label>Hue {{ Math.floor(baseH) + '°' }}</label>
+        <input type="range" class="block m0 full-width" max="359" v-model="baseH"
+          v-style="background-image: hGradient, color: baseHex">
+      </div>
+      <div class="sm-col sm-col-4 lg-col-3 px2 mb1 noselect">
+        <label>Saturation {{ Math.floor(baseS * 100) + '%' }}</label>
+        <input type="range" class="block m0 full-width" max="1" step=".001"
+          v-model="baseS"
+          v-style="background-image: sGradient, color: baseHex">
+      </div>
+      <div class="sm-col sm-col-4 lg-col-3 px2 mb1 noselect">
+        <label>Lightness {{ Math.floor(baseL * 100) + '%' }}</label>
+        <input type="range" class="block m0 full-width" max="1" step=".001"
+          v-model="baseL"
+          v-style="background-image: lGradient, color: baseHex">
+      </div>
+    </div>
+    <div class="clearfix mxn2 mb2">
+      <h3 class="h4 caps px2">Row Color Shift</h3>
+      <div class="sm-col sm-col-6 px2 mb1 noselect">
+        <label>Saturation {{ Math.floor(shiftS * 1000) / 10 + '%' }}</label>
+        <input type="range" class="block full-width"
+          min="-0.2" max="0.2" step="0.001" v-model="shiftS"
+          v-style="color: baseHex">
+      </div>
+      <div class="sm-col sm-col-6 px2 mb1 noselect">
+        <label>Lightness {{ Math.floor(shiftL * 1000) / 10 + '%' }}</label>
+        <input type="range" class="block full-width"
+          min="-0.2" max="0.2" step="0.001" v-model="shiftL"
+          v-style="color: baseHex">
+      </div>
+    </div>
+    <div>
+      <button type="reset" class="button-dark"
+        v-show="!resetConfirm"
+        v-on="click: resetConfirm = true">
+        Reset Colors
+      </button>
+      <button type="reset" class="button-dark" style="background-color:red"
+        v-show="resetConfirm"
+        v-on="click: reset(), click: resetConfirm = false">
+        Reset
+      </button>
+      <button class="button-dark" v-show="resetConfirm" v-on="click: resetConfirm = false">Cancel</button>
+    </div>
+  </section>
+
+  <footer class="px2 py3">
+    <p class="right-align m0">
+      <a href="http://github.com/jxnblk/Spectral" class="bold">View on Github</a>.
+      <br class="md-hide">
+      Powered by <a href="http://vuejs.org/">Vuejs</a> and <a href="https://github.com/bgrins/TinyColor">TinyColor</a>.
+      <br class="md-hide">
+      Made with love by
+      <a href="http://jxnblk.com" class="">Jxnblk</a>.
+    </p>
+  </footer>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.min.js"></script>
+
   <script src="js/app.js"></script>
-  <script src="js/controllers.js"></script>
 </body>
 </html>

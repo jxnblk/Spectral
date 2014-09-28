@@ -1,0 +1,174 @@
+/*
+    Spectral 2
+
+*/
+
+
+@import "basscss-base";
+@import "basscss-utilities";
+@import "basscss-table-object";
+@import "basscss-grid";
+@import "basscss-positions";
+@import "basscss-color-basic";
+
+
+:root {
+
+  --font-family: 'Avenir Next', sans-serif;
+  --heading-font-weight: 600;
+  --bold-font-weight: 600;
+
+  --dark-gray: #222;
+  --mid-gray: #333;
+  --darken-2: rgba(#000, .25);
+  --darken-3: rgba(#000, .5);
+
+}
+
+html, body { height: 100% }
+main   { height: 87.5% }
+
+a { color: white; text-decoration: underline; }
+
+.lh3 { line-height: 3rem; }
+
+.icon {
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: .1875em;
+}
+
+.icon-button {
+  width: 2.5rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.Tile-container {
+  overflow: hidden;
+}
+
+.Tile-row {
+  overflow: hidden;
+  font-size: 0;
+  white-space: nowrap;
+  transition: height .2s ease;
+}
+
+.Tile {
+  display: inline-block;
+  font-size: 1rem;
+  height: 100%;
+  overflow: hidden;
+  transition: width .2s ease-out;
+  position: relative;
+  color: rgba(#fff,.75);
+}
+.Tile > div,
+.Tile > a {
+  position: absolute;
+  margin-top: -1em;
+  top: 50%;
+  left: 0;
+  right: 0;
+  color: inherit;
+}
+
+.VFade {
+  opacity: .875;
+  transform: scale(1);
+  transition: all .1s ease-in;
+}
+.VFade.v-enter,
+.VFade.v-leave {
+  transform: scale(.25);
+  opacity: 0.2;
+}
+
+.transition-all { transition: all .3s ease-out; }
+.transition-bg { transition: background .2s ease, width .2s ease-out }
+
+.input-color {
+  width: 1.75rem;
+  height: 1.75rem;
+  line-height: 1rem;
+  margin: .25rem;
+  min-height: 0;
+  padding: 0;
+  border-radius: var(--border-radius);
+}
+.input-color:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(#fff,.125);
+}
+.input-color::-webkit-color-swatch-wrapper {
+  display: none;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  height: 2.25rem;
+  background-color: rgba(#000,.2);
+  border-radius: var(--border-radius);
+}
+input[type=range]:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--dark-gray), 0 0 0 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 2px 1px rgba(#000,.3);
+}
+
+.button-dark {
+  color: white;
+  background-color: var(--darken-3);
+  border-radius: var(--border-radius);
+  transition: transform .05s ease-out;
+}
+.button-dark:hover {
+  transform: scale(1.0625);
+}
+.button-dark:active {
+  transform: scale(0.9375);
+}
+.button-dark:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px var(--darken-2, red);
+}
+
+.input-dark {
+  color: white;
+  background-color: rgba(#fff, .125);
+  background-color: var(--darken-3);
+  border: 0;
+  border-radius: var(--border-radius);
+}
+.input-dark:focus {
+  outline: 0;
+  box-shadow: 0 0 0 1px var(--dark-gray), 0 0 0 3px;
+}
+
+.noselect { user-select: none }
+
+@keyframes blinker {
+  from { box-shadow: 0 0 0 2px rgba(#fff, .25) }
+  to { box-shadow: 0 0 0 2px rgba(#fff, 1) }
+}
+
+.blinker {
+  border-radius: var(--border-radius);
+  animation-name: blinker;
+  animation-duration: .5s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
