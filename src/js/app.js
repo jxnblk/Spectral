@@ -1,10 +1,10 @@
 
 
-//var Vue = require('vue');
 var Geomicons = require('geomicons-open');
 var tinycolor = require('tinycolor2');
-//var ZeroClipboard = require('zeroclipboard');
+var vueTouch = require('vue-touch');
 
+Vue.use(vueTouch);
 
 Vue.directive('icon', function(value) {
   this.el.dataset.icon = value;

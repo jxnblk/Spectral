@@ -2,8 +2,10 @@
 <html id="app">
   <meta charset="utf-8">
   <title>Spectral 2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="Mathematical color exploration tool">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="icon" href="/favicon.png">
 <head>
 </head>
 <body
@@ -34,7 +36,7 @@
     </div>
   </header>
 
-  <main class="Tile-container clearfix relative">
+  <main class="Tile-container clearfix relative" v-touch="swipeleft: addColumn()">
     <div class="Tile-row"
       v-style="height: 100 / (rows.length + 1) + '%'">
       <div class="Tile"
@@ -63,16 +65,24 @@
       </div>
     </div>
     <div id="grid-controls" class="absolute bottom-0 right-0 p1">
-      <button title="Remove Hue" class="icon-button button-dark" v-on="click: removeColumn()">
+      <button title="Remove Hue" class="icon-button button-dark"
+        v-on="click: removeColumn()"
+        v-touch="tap: removeColumn()">
         <svg v-icon="'chevron-left'" class="icon" viewBox="0 0 32 32"></svg>
       </button>
-      <button title="Add Row" class="icon-button button-dark" v-on="click: addRow()">
+      <button title="Add Row" class="icon-button button-dark"
+        v-on="click: addRow()"
+        v-touch="tap: addRow()">
         <svg v-icon="'chevron-down'" class="icon" viewBox="0 0 32 32"></svg>
       </button>
-      <button title="Remove Row" class="icon-button button-dark" v-on="click: removeRow()">
+      <button title="Remove Row" class="icon-button button-dark"
+        v-on="click: removeRow()"
+        v-touch="tap: removeRow()">
         <svg v-icon="'chevron-up'" class="icon" viewBox="0 0 32 32"></svg>
       </button>
-      <button title="Add Hue" class="icon-button button-dark" v-on="click: addColumn()">
+      <button title="Add Hue" class="icon-button button-dark"
+        v-on="click: addColumn()"
+        v-touch="tap: addColumn()">
         <svg v-icon="'chevron-right'" class="icon" viewBox="0 0 32 32"></svg>
       </button>
     </div>
@@ -81,8 +91,8 @@
 
   <section id="options" class="p2 mb4">
     <div class="clearfix mxn2">
-      <form class="lg-col lg-col-3 px2 py1">
-        <label class="block">Base Color</label>
+      <form class="lg-col lg-col-3 px2 mb1">
+        <label class="block caps bold">Base Color</label>
         <div class="relative">
           <input type="text" class="block full-width input-dark"
           placeholder="base color"
@@ -93,18 +103,18 @@
           placeholder="e.g. #f00" v-model="base">
         </div>
       </form>
-      <div class="md-col md-col-4 lg-col-3 px2 py1 noselect">
+      <div class="sm-col sm-col-4 lg-col-3 px2 mb1 noselect">
         <label>Hue {{ Math.floor(baseH) + '°' }}</label>
         <input type="range" class="block m0 full-width" max="359" v-model="baseH"
           v-style="background-image: hGradient, color: baseHex">
       </div>
-      <div class="md-col md-col-4 lg-col-3 px2 py1 noselect">
+      <div class="sm-col sm-col-4 lg-col-3 px2 mb1 noselect">
         <label>Saturation {{ Math.floor(baseS * 100) + '%' }}</label>
         <input type="range" class="block m0 full-width" max="1" step=".001"
           v-model="baseS"
           v-style="background-image: sGradient, color: baseHex">
       </div>
-      <div class="md-col md-col-4 lg-col-3 px2 py1 noselect">
+      <div class="sm-col sm-col-4 lg-col-3 px2 mb1 noselect">
         <label>Lightness {{ Math.floor(baseL * 100) + '%' }}</label>
         <input type="range" class="block m0 full-width" max="1" step=".001"
           v-model="baseL"
@@ -112,17 +122,17 @@
       </div>
     </div>
     <div class="clearfix mxn2">
-      <h3 class="h5 caps px2">Row Transform</h3>
-      <div class="sm-col sm-col-6 px2 py1 noselect">
-        <label>Saturation {{ shiftS }}</label>
+      <h3 class="h4 caps px2">Row Color Shift</h3>
+      <div class="sm-col sm-col-6 px2 mb1 noselect">
+        <label>Saturation {{ Math.floor(shiftS * 1000) / 10 + '%' }}</label>
         <input type="range" class="block full-width"
-          min="-0.2" max="0.2" step="0.01" v-model="shiftS"
+          min="-0.2" max="0.2" step="0.001" v-model="shiftS"
           v-style="color: baseHex">
       </div>
-      <div class="sm-col sm-col-6 px2 py1 noselect">
-        <label>Lightness {{ shiftL }}</label>
+      <div class="sm-col sm-col-6 px2 mb1 noselect">
+        <label>Lightness {{ Math.floor(shiftL * 1000) / 10 + '%' }}</label>
         <input type="range" class="block full-width"
-          min="-0.2" max="0.2" step="0.01" v-model="shiftL"
+          min="-0.2" max="0.2" step="0.001" v-model="shiftL"
           v-style="color: baseHex">
       </div>
     </div>

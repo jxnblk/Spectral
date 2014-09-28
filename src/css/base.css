@@ -118,11 +118,12 @@ input[type=range]:focus {
 }
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: .5rem;
-  height: 2.25rem;
-  background-color: rgba(#fff,.75);
-  box-shadow: none;
-  border: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 2px 1px rgba(#000,.3);
 }
 
 .button-dark {
