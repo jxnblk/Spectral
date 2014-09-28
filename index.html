@@ -1,24 +1,22 @@
 <!doctype html>
 <html id="app">
   <meta charset="utf-8">
-  <title>Spectral 2</title>
+  <title>Spectral</title>
   <meta name="description" content="Mathematical color exploration tool">
+  <meta name="author" content="Brent Jackson">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="stylesheet" href="css/base.css">
   <link rel="icon" href="favicon.png">
 <head>
 </head>
-<body
-  class="white bg-dark-gray"
-  v-on="
-    keydown: addColumn | key right, keydown: removeColumn | key left,
+<body class="white bg-dark-gray"
+  v-on="keydown: addColumn | key right, keydown: removeColumn | key left,
     keydown: addRow($event) | key down, keydown: removeRow($event) | key up">
-
-    <!-- VIM 76, 72, 74, 75 -->
 
   <header class="absolute top-0 left-0 right-0 z1 clearfix lh3">
     <div class="right lh3 px2">
       <a href="https://twitter.com/intent/tweet?text=Spectral: color exploration tool&amp;url=http://jxnblk.github.io/Spectral&amp;via=jxnblk"
+        title="Share Spectral on Twitter"
         target="_blank"
         class="h5 button button-dark">
         Tweet
@@ -68,7 +66,7 @@
           </a>
       </div>
     </div>
-    <div id="grid-controls" class="absolute bottom-0 right-0 z1 p1">
+    <div id="grid-controls" class="absolute bottom-0 right-0 z1 p1 m1" v-class="blinker: showCoach">
       <button title="Remove Hue" class="icon-button button-dark"
         v-touch="tap: removeColumn()">
         <svg v-icon="'chevron-left'" class="icon" data-icon="chevron-left" viewBox="0 0 32 32"></svg>

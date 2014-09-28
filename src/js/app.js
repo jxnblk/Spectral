@@ -6,12 +6,6 @@ var vueTouch = require('vue-touch');
 
 Vue.use(vueTouch);
 
-Vue.directive('icon', function(value) {
-  //this.el.dataset.icon = value;
-  Geomicons.inject(this.el);
-});
-
-
 var app = {};
 app.data = {};
 app.data.baseHex = '#00c9fc';
@@ -222,6 +216,13 @@ app.computed.tileWidth = function() {
   return 100 / (this.spectrum.length);
 };
 
+app.computed.showCoach = function() {
+  if (this.spectrum.length == 1 && this.rows.length == 0){
+    return true;
+  } else {
+    return false;
+  }
+};
 
 app.methods = {};
 
@@ -273,10 +274,24 @@ app.methods.updateState = function() {
   window.history.pushState({ base: this.baseHex }, '', str);
 };
 
-app.methods.handleKeydown = function(e) {
-  //console.log(e);
+
+app.data.flashMessage = false;
+
+app.methods.flash = function(value) {
+  var self = this;
+  var timeout = window.setTimeout(clearMessage, 2000);
+  function clearMessage() {
+    self.flashMessage = false;
+    window.clearTimeout(timeout);
+  };
+  this.flashMessage = value;
 };
 
+
+Vue.directive('icon', function(value) {
+  //this.el.dataset.icon = value;
+  Geomicons.inject(this.el);
+});
 
 Vue.directive('zeroclip', function(value) {
   var root = this.vm.$root;
@@ -292,17 +307,7 @@ Vue.directive('zeroclip', function(value) {
   });
 });
 
-app.data.flashMessage = false;
 
-app.methods.flash = function(value) {
-  var self = this;
-  var timeout = window.setTimeout(clearMessage, 2000);
-  function clearMessage() {
-    self.flashMessage = false;
-    window.clearTimeout(timeout);
-  };
-  this.flashMessage = value;
-};
 
 app.created = function() {
 
@@ -333,12 +338,6 @@ app.created = function() {
     if (obj.shiftL) this.shiftL = obj.shiftL;
   };
 
-  //window.onpopstate = function(e) {
-  //  //console.log('pop', e);
-  //  var obj = parseHash(window.location.hash);
-  //  //self.base = obj.base;
-  //  var hues = eval(obj.hues);
-  //};
 };
 
 var view = new Vue({

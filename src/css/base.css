@@ -131,8 +131,13 @@ input[type=range]::-webkit-slider-thumb {
   color: white;
   background-color: var(--darken-3);
   border-radius: var(--border-radius);
+  transition: transform .05s ease-out;
 }
 .button-dark:hover {
+  transform: scale(1.0625);
+}
+.button-dark:active {
+  transform: scale(0.9375);
 }
 .button-dark:focus {
   outline: 0;
@@ -142,6 +147,7 @@ input[type=range]::-webkit-slider-thumb {
 .input-dark {
   color: white;
   background-color: rgba(#fff, .125);
+  background-color: var(--darken-3);
   border: 0;
   border-radius: var(--border-radius);
 }
@@ -151,4 +157,18 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .noselect { user-select: none }
+
+@keyframes blinker {
+  from { box-shadow: 0 0 0 2px rgba(#fff, .25) }
+  to { box-shadow: 0 0 0 2px rgba(#fff, 1) }
+}
+
+.blinker {
+  border-radius: var(--border-radius);
+  animation-name: blinker;
+  animation-duration: .5s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
 
