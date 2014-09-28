@@ -60,9 +60,8 @@ header { min-height: 12.5% }
   display: inline-block;
   font-size: 1rem;
   height: 100%;
-  width: 100%;
   overflow: hidden;
-  transition: width .2s ease, height .2s ease;
+  transition: width .2s ease-out;
   position: relative;
   color: rgba(#fff,.75);
 }
@@ -75,11 +74,11 @@ header { min-height: 12.5% }
   right: 0;
 }
 
-.Tile.v-enter,
-.Tile.v-leave {
-  font-size: .875%;
-  transition: width .2s ease, height .2s ease;
+/*
+.Tile.v-enter {
 }
+.Tile.v-leave { opacity: .4; }
+*/
 
 .transition-all {
   transition: all .3s ease-out;

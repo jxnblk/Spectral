@@ -121,9 +121,14 @@ app.computed.spectrum = {
     this.baseHex;
     var color = tinycolor(this.baseHex);
     var rotate = -360 / (this.spectrumArray.length + 1);
-    this.spectrumArray[0] = { color: color.toHexString() };
+    if (this.spectrumArray[0] && this.spectrumArray[0].color == this.baseHex) {
+      this.spectrumArray[0].color = this.baseHex;
+    } else {
+      this.spectrumArray[0] = { color: color.toHexString() };
+    }
     for (var i = 1; i < this.spectrumArray.length; i++) {
-      this.spectrumArray[i] = { color: color.spin(rotate).toHexString() };
+      if (!this.spectrumArray[i]) this.spectrumArray[i] = {};
+      this.spectrumArray[i].color = color.spin(rotate).toHexString();
     }
     return this.spectrumArray;
   },
@@ -138,17 +143,23 @@ app.computed.rows = {
     this.baseHex;
     this.shiftS;
     this.shiftL;
+    this.spectrum;
     var spectrum = this.spectrumArray;
     for (var i = 0; i < this.rowsArray.length; i++) {
-      var row = { colors: [] };
+      var row = this.rowsArray[i] || [{ newRow: true, colors: [] }];
+      row.colors.splice(row.colors.length - 1, 32);
       for (var j = 0; j < spectrum.length; j++) {
         var hsl = tinycolor(spectrum[j].color).toHsl();
         hsl.s += this.shiftS * (i + 1);
         hsl.l += this.shiftL * (i + 1);
+        if (hsl.s > 1) hsl.s = 1;
+        if (hsl.s < 0) hsl.s = 0;
+        if (hsl.l > 1) hsl.l = 1;
+        if (hsl.l < 0) hsl.l = 0;
         var color = tinycolor(hsl).toHexString();
-        row.colors.push({ color: color });
+        row.colors[j] = row.colors[j] || {};
+        row.colors[j].color = color;
       }
-      this.rowsArray[i] = row;
     }
     return this.rowsArray;
   },
@@ -230,7 +241,7 @@ app.methods.removeColumn = function() {
 app.methods.addRow = function(e) {
   if (e) e.preventDefault();
   if (this.rowsArray.length > 7) return false;
-  this.rowsArray.push([]);
+  this.rowsArray.push({ colors: [] });
   this.updateState();
 };
 
@@ -258,7 +269,7 @@ app.methods.updateState = function() {
 };
 
 app.methods.handleKeydown = function(e) {
-  console.log(e);
+  //console.log(e);
 };
 
 app.created = function() {
@@ -291,11 +302,10 @@ app.created = function() {
   };
 
   window.onpopstate = function(e) {
-    console.log('pop', e);
+    //console.log('pop', e);
     var obj = parseHash(window.location.hash);
     //self.base = obj.base;
     var hues = eval(obj.hues);
-    console.log(typeof hues);
     /*
     if (hues != self.spectrum.length) {
       console.log('reset spectrum');
