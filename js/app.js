@@ -5869,14 +5869,14 @@ app.methods.removeColumn = function() {
 };
 
 app.methods.addRow = function(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
   if (this.rowsArray.length > 7) return false;
   this.rowsArray.push([]);
   this.updateState();
 };
 
 app.methods.removeRow = function(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
   if (this.rowsArray.length < 1) return false;
   this.rowsArray.splice(this.rowsArray.length - 1);
   this.updateState();
